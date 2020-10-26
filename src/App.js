@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { connect } from 'react-redux';
+import { getUser, setUser } from './actions/userActions';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  componentDidMount() {
+    localStorage.setItem("token", 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3fQ.vovyPPgUXMQ2JSXjgIE8CrdlfWu-9c2q-wwr6rrrR4A')
+    const token = localStorage.getItem("token");
+    if (token) {
+      console.log("got a token");
+      this.props.getUser();
+    } else {
+      console.log('no token')
+      this.props.setUser({})
+    }
+  }
+
+  render() {
+    return <p>hello!</p>
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getUser: () => dispatch(getUser()),
+    setUser: dispatch(setUser())
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
