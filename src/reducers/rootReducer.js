@@ -33,6 +33,12 @@ function userReducer(state = defaultState.user, action) {
         ...state,
         signupStep: state.signupStep + 1
       };
+    
+    case "DECREMENT_SIGNUP_STEP":
+      return {
+        ...state,
+        signupStep: state.signupStep - 1
+      };
 
     default: 
       return state;

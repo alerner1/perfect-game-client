@@ -57,3 +57,5 @@ export function getUser() {
 export const setUser = (userObj) => ({ type: "SET_USER", payload: userObj})
 
 export const incrementSignupStep = () => ({ type: "INCREMENT_SIGNUP_STEP" })
+
+export const decrementSignupStep = () => ({ type: "DECREMENT_SIGNUP_STEP" })
