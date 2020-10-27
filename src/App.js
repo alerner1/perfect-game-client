@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { getUser, setUser } from './actions/userActions';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import NavMenuContainer from './NavMenu/containers/NavMenuContainer';
-import LoginForm from './Login/LoginForm'
+import LoginForm from './Login/LoginForm';
+import SignupForm from './Signup/SignupForm';
 
 class App extends React.Component {
   componentDidMount() {
@@ -24,7 +25,7 @@ class App extends React.Component {
         <NavMenuContainer />
         <Switch>
           <Route path="/login" render={() => <LoginForm />} />
-          <Route path="/signup" render={() => <p>time to sign up!</p>} />
+          <Route path="/signup" render={() => <SignupForm />} />
           {/* hypothetically we could have the component below show a "loading" thing until there is a currentUser. if currentUser is an empty obj or whatever then reroute? */}
           <Route path="/welcome" render={() => <p>welcome {this.props.currentUser && this.props.currentUser.username}!</p>} />
         </Switch>

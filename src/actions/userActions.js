@@ -1,3 +1,23 @@
+export function createUser(formData) {
+  return (dispatch) => {
+    fetch('http://localhost:3000/api/v1/users', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accepts": "application/json"
+      },
+      body: JSON.stringify({
+        user: formData
+      })
+    })
+      .then(response => response.json())
+      .then(json => {
+        localStorage.setItem("token", json.jwt);
+        dispatch({ type: 'SET_USER', payload: json.user })
+      })
+  }
+}
+
 export function loginUser(formData) {
   return (dispatch) => {
     fetch('http://localhost:3000/api/v1/login', {
@@ -11,7 +31,10 @@ export function loginUser(formData) {
       })
     })
       .then(response => response.json())
-      .then(json => dispatch({ type: 'SET_USER', payload: json.user }))
+      .then(json => {
+        localStorage.setItem("token", json.jwt);
+        dispatch({ type: 'SET_USER', payload: json.user })
+      })
   }
 }
 
@@ -25,7 +48,6 @@ export function getUser() {
     })
       .then(response => response.json())
       .then(json => {
-        localStorage.setItem("token", json.jwt);
         dispatch({ type: 'SET_USER', payload: json.user });
       });
   };
