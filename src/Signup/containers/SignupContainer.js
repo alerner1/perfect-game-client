@@ -1,7 +1,7 @@
 import React from 'react';
 import SignupForm from '../components/SignupForm';
 import { connect } from 'react-redux';
-import PopularGamesGrid from '../components/PopularGamesGrid';
+import PopularGamesContainer from '../containers/PopularGamesContainer';
 
 class SignupContainer extends React.Component {
   signupStep = () => {
@@ -9,7 +9,7 @@ class SignupContainer extends React.Component {
       case 0:
         return <SignupForm />;
       case 1:
-        return <PopularGamesGrid />;
+        return <PopularGamesContainer />;
       default:
         return <SignupForm />;
     }

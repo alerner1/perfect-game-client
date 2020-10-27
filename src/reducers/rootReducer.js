@@ -6,7 +6,10 @@ const defaultState = {
     signupStep: 0,
     requesting: false
   },
-  displayGames: []
+  games: {
+    displayGames: [],
+    requesting: false
+  }
 };
 
 function userReducer(state = defaultState.user, action) {
@@ -36,11 +39,23 @@ function userReducer(state = defaultState.user, action) {
   }
 }
 
-function gamesReducer(state = defaultState.displayGames, action) {
+function gamesReducer(state = defaultState.games, action) {
   switch(action.type){
+    // case "ADD_GAME_REQUEST":
+    //   return {
+    //     ...state,
+    //     requesting: true
+    //   }
     case "ADD_GAME":
-      console.log('adding game')
-      return [...state, action.payload];
+      return {
+        ...state,
+        displayGames: [...state.displayGames, action.payload]
+      };
+    case "CLEAR_GAMES":
+      return {
+        ...state,
+        displayGames: []
+      }
     default:
       return state;
   }
@@ -48,7 +63,7 @@ function gamesReducer(state = defaultState.displayGames, action) {
 
 const rootReducer = combineReducers({
   user: userReducer,
-  displayGames: gamesReducer
+  games: gamesReducer
 });
 
 export default rootReducer;
