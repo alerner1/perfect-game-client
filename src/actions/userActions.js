@@ -13,7 +13,8 @@ export function createUser(formData) {
       .then(response => response.json())
       .then(json => {
         localStorage.setItem("token", json.jwt);
-        dispatch({ type: 'SET_USER', payload: json.user })
+        dispatch({ type: 'SET_USER', payload: json.user });
+        dispatch({ type: 'INCREMENT_SIGNUP_STEP'});
       })
   }
 }
@@ -54,3 +55,5 @@ export function getUser() {
 }
 
 export const setUser = (userObj) => ({ type: "SET_USER", payload: userObj})
+
+export const incrementSignupStep = () => ({ type: "INCREMENT_SIGNUP_STEP" })

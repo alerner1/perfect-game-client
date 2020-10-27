@@ -2,7 +2,7 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button';
-import { createUser } from '../actions/userActions';
+import { createUser } from '../../actions/userActions';
 import { Redirect, withRouter } from 'react-router-dom';
 
 class SignupForm extends React.Component {
@@ -34,14 +34,9 @@ class SignupForm extends React.Component {
     this.props.createUser(this.state.userData);
   };
 
-  clickHandler = e => {
-    e.preventDefault();
-    this.props.history.push('/signup')
-  }
-
   render() {
     return(
-      !this.props.currentUser ?
+      // !this.props.currentUser ?
       <Form onSubmit={this.handleSubmit} className="w-50 mx-auto mt-5">
         <h3 className="text-center">Create Account</h3>
         <Form.Group controlId="formBasicEmail">
@@ -63,8 +58,8 @@ class SignupForm extends React.Component {
           Submit
         </Button>
       </Form>
-      :
-      <Redirect to="/welcome" />
+      // :
+      // <Redirect to="/welcome" />
     )
   }
 }
