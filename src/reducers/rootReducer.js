@@ -46,17 +46,30 @@ function userReducer(state = defaultState.user, action) {
 }
 
 function gamesReducer(state = defaultState.games, action) {
+  let gameIndex;
+  let newList;
   switch(action.type){
-    // case "ADD_GAME_REQUEST":
-    //   return {
-    //     ...state,
-    //     requesting: true
-    //   }
     case "ADD_GAME":
       return {
         ...state,
         displayGames: [...state.displayGames, action.payload]
       };
+    case "LIKE_GAME":
+      gameIndex = state.displayGames.indexOf(action.payload);
+      newList = state.displayGames.slice();
+      newList[gameIndex]['liked'] = true;
+      return {
+        ...state,
+        displayGames: newList
+      }
+    case "UNLIKE_GAME":
+      gameIndex = state.displayGames.indexOf(action.payload);
+      newList = state.displayGames.slice();
+      newList[gameIndex]['liked'] = false;
+      return {
+        ...state,
+        displayGames: newList
+      }
     case "CLEAR_GAMES":
       return {
         ...state,

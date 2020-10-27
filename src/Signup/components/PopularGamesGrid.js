@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getPopularGames, clearGames } from '../../actions/displayGamesActions';
+import { getPopularGames, clearGames, likeGame, unlikeGame } from '../../actions/displayGamesActions';
 import PopularGame from './PopularGame';
 import Container from 'react-bootstrap/Container';
 import CardDeck from 'react-bootstrap/CardDeck';
@@ -17,16 +17,24 @@ class PopularGamesGrid extends React.Component {
     this.props.clearGames();
   }
 
+  handleClick = (gameObj) => {
+    if (gameObj.liked === false) {
+      this.props.likeGame(gameObj);
+    } else {
+      this.props.unlikeGame(gameObj);
+    }
+  }
+
   mapRow = row => {
     const thisRow = this.props.popularGames.filter(game => {
       return this.props.popularGames.indexOf(game) >= row * 5 && this.props.popularGames.indexOf(game) < (row + 1) * 5;
     });
 
     return (
-      <Row noGutters key={row}>
+      <Row noGutters key={row}> 
         <Col xs={1}>
         </Col>
-          {thisRow.map(game => <PopularGame key={game.id} game={game} />)}
+          {thisRow.map(game => <PopularGame key={game.id} handleClick={this.handleClick} game={game} />)}
         <Col xs={1}>
         </Col>
       </Row>
@@ -64,7 +72,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getPopularGames: () => dispatch(getPopularGames()),
-    clearGames: () => dispatch(clearGames())
+    clearGames: () => dispatch(clearGames()),
+    likeGame: (gameObj) => dispatch(likeGame(gameObj)),
+    unlikeGame: (gameObj) => dispatch(unlikeGame(gameObj))
   }
 }
 
