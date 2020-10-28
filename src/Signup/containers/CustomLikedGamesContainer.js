@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import CustomLikedGamesList from '../components/CustomLikedGamesList';
 import GameSearchBar from '../components/GameSearchBar';
+import SearchResultsList from '../components/SearchResultsList';
 
 class CustomLikedGamesContainer extends React.Component {
   render(){
@@ -16,6 +17,11 @@ class CustomLikedGamesContainer extends React.Component {
         </Row>
         <Row>
           <GameSearchBar />
+        </Row>
+        <Row>
+          <Col>
+            <SearchResultsList />
+          </Col>
         </Row>
         <Row>
           <Col>

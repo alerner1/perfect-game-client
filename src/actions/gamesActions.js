@@ -43,6 +43,8 @@ export function getSearchResults(query) {
       })
     })
     .then(resp => resp.json())
-    .then(console.log)
+    .then(json => {
+      dispatch({ type: 'ADD_SEARCH_RESULTS', payload: json })
+    })
   }
 }
