@@ -48,3 +48,7 @@ export function getSearchResults(query) {
     })
   }
 }
+
+export const clearSearchResults = () => ({ type: "CLEAR_SEARCH_RESULTS" })
+
+export const resetGames = () => ({ type: "RESET_GAMES" })

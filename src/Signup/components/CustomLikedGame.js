@@ -1,8 +1,19 @@
 import React from 'react';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
 
 class CustomLikedGame extends React.Component {
+  handleClick = () => {
+    this.props.handleRemove(this.props.game)
+  }
+
   render(){
-    return (<p>game</p>)
+    return (
+      <ListGroup.Item>
+        {this.props.game.name} {this.props.game.first_release_date ? `(${this.props.game.first_release_date})` : null }
+        <Button variant="danger" className="float-right" onClick={this.handleClick}>Remove</Button>
+      </ListGroup.Item>
+    )
   }
 }
 

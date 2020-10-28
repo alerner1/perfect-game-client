@@ -3,6 +3,7 @@ import SignupForm from '../components/SignupForm';
 import { connect } from 'react-redux';
 import PopularGamesContainer from '../containers/PopularGamesContainer';
 import CustomLikedGamesContainer from '../containers/CustomLikedGamesContainer';
+import { withRouter } from 'react-router-dom';
 
 class SignupContainer extends React.Component {
   signupStep = () => {
@@ -18,6 +19,12 @@ class SignupContainer extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    if (this.props.signupStep > 2) {
+      this.props.history.push('/welcome')
+    }
+  }
+
   render(){
     return(this.signupStep())
   }
@@ -29,4 +36,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(SignupContainer)
+export default connect(mapStateToProps)(withRouter(SignupContainer))

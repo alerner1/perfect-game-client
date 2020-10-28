@@ -13,10 +13,14 @@ class CustomLikedGamesContainer extends React.Component {
     return(
       <Container>
         <Row>
-          <CustomLikedGamesList />
+          <Col>
+            <CustomLikedGamesList />
+          </Col>
         </Row>
         <Row>
-          <GameSearchBar />
+          <Col>
+            <GameSearchBar />
+          </Col>
         </Row>
         <Row>
           <Col>

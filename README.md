@@ -2,13 +2,15 @@ TODOS
 
 * right now when you click previous to go back to the popular games page it resets everything. so either make it that you can't go back or that you can and it still knows what you picked already and updates accordingly if you deselect something etc
 
+* make it so you can't select a search result twice when you add custom liked games
+
 WEDNESDAY:
   * figure out design for search results
   * flesh out custom liked games list and custom liked game
   * add games to user played games (with like) on submit
-  * attend lecture on recommendation algorithms
   * pitch wireframes etc
   * profile components tree: display information in profile and get edit profile form working
+  * attend lecture on recommendation algorithms
 
 THURSDAY:
   * gameslists components tree: owned games grid, wishlist grid, savedrecs grid (w/ dummy data for now)

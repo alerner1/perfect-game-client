@@ -27,7 +27,7 @@ function userReducer(state = defaultState.user, action) {
       return {
         ...state,
         currentUser: action.payload,
-        requesting: false
+        requesting: false,
       };
 
     case "INCREMENT_SIGNUP_STEP":
@@ -41,7 +41,13 @@ function userReducer(state = defaultState.user, action) {
         ...state,
         signupStep: state.signupStep - 1
       };
-
+    case "RESET_SIGNUP_STEP":
+      return {
+        ...state,
+        signupStep: 0
+      }
+    case "RESET_USER":
+      return defaultState.user
     default: 
       return state;
   }
@@ -87,6 +93,13 @@ function gamesReducer(state = defaultState.games, action) {
         ...state,
         searchResults: action.payload
       }
+    case "CLEAR_SEARCH_RESULTS":
+      return {
+        ...state,
+        searchResults: []
+      }
+    case "RESET_GAMES":
+      return defaultState.games;
     default:
       return state;
   }

@@ -5,7 +5,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 class SearchResultsList extends React.Component {
   mapSearchResults = () => {
-    return this.props.searchResults.map(result => { return <SearchResult result={result} />})
+    return this.props.searchResults.map(result => { return <SearchResult key={result['id']} result={result} />})
   }
 
   render() {
