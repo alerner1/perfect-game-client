@@ -12,7 +12,7 @@ class App extends React.Component {
     if (token) {
       console.log("got a token");
       this.props.getUser();
-      // this.props.history.push('/welcome');
+      // this.props.history.push('/profile');
     } else {
       console.log('no token')
     }
@@ -26,7 +26,7 @@ class App extends React.Component {
           <Route path="/login" render={() => <LoginForm />} />
           <Route path="/signup" render={() => <SignupContainer />} />
           {/* hypothetically we could have the component below show a "loading" thing until there is a currentUser. if currentUser is an empty obj or whatever then reroute? */}
-          <Route path="/welcome" render={() => <p>welcome {this.props.currentUser && this.props.currentUser.email}!</p>} />
+          <Route path="/profile" render={() => <p>profile {this.props.currentUser.email}!</p>} />
         </Switch>
       </div>
     )

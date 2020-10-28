@@ -10,6 +10,9 @@ import { withRouter } from 'react-router-dom';
 class NavMenuLoggedIn extends React.Component {
   handleSelect = (eventKey) => {
     switch(eventKey){
+    case '1':
+      this.props.history.push('/profile')
+      break;
     case '5':
       localStorage.removeItem("token");
       this.props.resetUser();

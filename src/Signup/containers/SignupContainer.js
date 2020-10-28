@@ -21,7 +21,7 @@ class SignupContainer extends React.Component {
 
   componentDidUpdate() {
     if (this.props.signupStep > 2) {
-      this.props.history.push('/welcome')
+      this.props.history.push('/profile')
     }
   }
 
