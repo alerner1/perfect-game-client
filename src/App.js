@@ -5,6 +5,7 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import NavMenuContainer from './NavMenu/containers/NavMenuContainer';
 import LoginForm from './Login/LoginForm';
 import SignupContainer from './Signup/containers/SignupContainer';
+import ProfileContainer from './Profile/containers/ProfileContainer';
 
 class App extends React.Component {
   componentDidMount() {
@@ -26,7 +27,7 @@ class App extends React.Component {
           <Route path="/login" render={() => <LoginForm />} />
           <Route path="/signup" render={() => <SignupContainer />} />
           {/* hypothetically we could have the component below show a "loading" thing until there is a currentUser. if currentUser is an empty obj or whatever then reroute? */}
-          <Route path="/profile" render={() => <p>profile {this.props.currentUser.email}!</p>} />
+          <Route path="/profile" render={() => <ProfileContainer />} />
         </Switch>
       </div>
     )
