@@ -29,7 +29,7 @@ class LoginForm extends React.Component {
 
   render() {
     return(
-      Object.keys(this.props.currentUser).length === 0 ?
+      !this.props.currentUser || Object.keys(this.props.currentUser).length === 0 ?
       <Form onSubmit={this.handleSubmit} className="w-50 mx-auto mt-5">
         <h3 className="text-center">Discover the Perfect Game</h3>
         <Form.Group controlId="formBasicEmail">

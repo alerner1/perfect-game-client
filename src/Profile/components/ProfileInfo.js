@@ -5,7 +5,7 @@ class ProfileInfo extends React.Component {
   render() {
     return(
       <>
-        <h3>{this.props.currentUser.email}</h3>
+        <h3 className="text-center">{this.props.currentUser.email}</h3>
       </>
     )
   }

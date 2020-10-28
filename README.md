@@ -4,6 +4,10 @@ TODOS
 
 * make it so you can't select a search result twice when you add custom liked games
 
+* allow user to edit email password and steam information (while retaining uniqueness etc)
+
+* make it so state knows when it's doing fetch requesty stuff and front end says loading when it's still working on that for profile
+
 WEDNESDAY:
   * figure out design for search results
   * flesh out custom liked games list and custom liked game

@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
-import { incrementSignupStep } from '../../actions/userActions';
+import { incrementSignupStep, getUser } from '../../actions/userActions';
 
 class ContinueButton extends React.Component {
   handleClick = () => {
@@ -22,11 +22,18 @@ class ContinueButton extends React.Component {
         },
         body: JSON.stringify({
           game_id: game['id'],
-          liked: 1
+          liked: 1,
+          game: {
+            igdb_id: game['id'],
+            name: game['name'],
+            cover_url: game['cover']['url'],
+            release_date: game['first_release_date'],
+            platforms: game['platforms']
+          }
         })
       })
       .then(resp => resp.json())
-      .then(console.log)
+      .then(this.props.getUser())
     }   
   }
 
@@ -43,8 +50,16 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    incrementSignupStep: () => dispatch(incrementSignupStep())
+    incrementSignupStep: () => dispatch(incrementSignupStep()),
+    getUser: () => dispatch(getUser())
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContinueButton);
+
+
+// t.integer :igdb_id
+// t.string :name
+// t.string :cover_url
+// t.string :release_date
+// t.string :platforms

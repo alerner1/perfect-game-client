@@ -6,7 +6,7 @@ import NavMenuLoggedOut from '../components/NavMenuLoggedOut';
 class NavMenuContainer extends React.Component {
   render() {
     return (
-      Object.keys(this.props.currentUser).length !== 0 ? <NavMenuLoggedIn /> : <NavMenuLoggedOut />
+      this.props.currentUser && Object.keys(this.props.currentUser).length !== 0 ? <NavMenuLoggedIn /> : <NavMenuLoggedOut />
     )
   }
 }
