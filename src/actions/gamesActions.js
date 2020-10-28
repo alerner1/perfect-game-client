@@ -23,3 +23,11 @@ export function getPopularGames() {
       })
   }
 }
+
+export const updateSearchQuery = (query) => ({ type: "UPDATE_SEARCH_QUERY", payload: query })
+
+// export function getSearchResults() {
+//   return (dispatch) => {
+    // somewhere here i gotta put in the call to the games controller that will get me the search results
+//   }
+// }

@@ -8,7 +8,9 @@ const defaultState = {
   },
   games: {
     displayGames: [],
-    requesting: false
+    requesting: false,
+    search: '',
+    searchResults: []
   }
 };
 
@@ -74,6 +76,16 @@ function gamesReducer(state = defaultState.games, action) {
       return {
         ...state,
         displayGames: []
+      }
+    case "UPDATE_SEARCH_QUERY":
+      return {
+        ...state,
+        search: action.payload
+      }
+    case "ADD_SEARCH_RESULTS":
+      return {
+        ...state,
+        searchResults: action.payload
       }
     default:
       return state;

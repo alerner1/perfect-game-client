@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getPopularGames, clearGames, likeGame, unlikeGame } from '../../actions/displayGamesActions';
+import { getPopularGames, clearGames, likeGame, unlikeGame } from '../../actions/gamesActions';
 import PopularGame from './PopularGame';
 import Container from 'react-bootstrap/Container';
 import CardDeck from 'react-bootstrap/CardDeck';
