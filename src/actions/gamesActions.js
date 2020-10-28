@@ -26,8 +26,23 @@ export function getPopularGames() {
 
 export const updateSearchQuery = (query) => ({ type: "UPDATE_SEARCH_QUERY", payload: query })
 
-// export function getSearchResults() {
-//   return (dispatch) => {
-    // somewhere here i gotta put in the call to the games controller that will get me the search results
-//   }
-// }
+export function getSearchResults(query) {
+  return (dispatch) => {
+    const token = localStorage.getItem("token")
+    fetch('http://localhost:3000/api/v1/games/search', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accepts": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        game: {
+          query: query
+        }
+      })
+    })
+    .then(resp => resp.json())
+    .then(console.log)
+  }
+}
