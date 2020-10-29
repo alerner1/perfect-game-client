@@ -21,7 +21,8 @@ export function createUser(formData) {
         } });
         dispatch({ type: 'INCREMENT_SIGNUP_STEP'});
         dispatch({ type: 'ADD_USER_PLAYED_GAMES', payload: json.user['user_played_games'] })
-        dispatch({ type: 'ADD_PLAYED_GAMES', payload: json.user['played_games']})
+        dispatch({ type: 'ADD_PLAYED_GAMES', payload: json.user['played_games'] })
+        dispatch({ type: 'ADD_OWNED_GAMES', payload: json.user['owned_games'] })
       })
   }
 }
@@ -49,6 +50,7 @@ export function loginUser(formData) {
         } });
         dispatch({ type: 'ADD_USER_PLAYED_GAMES', payload: json.user['user_played_games'] })
         dispatch({ type: 'ADD_PLAYED_GAMES', payload: json.user['played_games']})
+        dispatch({ type: 'ADD_OWNED_GAMES', payload: json.user['owned_games'] })
       })
   }
 }
@@ -71,6 +73,7 @@ export function getUser() {
         } });
         dispatch({ type: 'ADD_USER_PLAYED_GAMES', payload: json.user['user_played_games'] })
         dispatch({ type: 'ADD_PLAYED_GAMES', payload: json.user['played_games']})
+        dispatch({ type: 'ADD_OWNED_GAMES', payload: json.user['owned_games'] })
       });
   };
 }

@@ -13,6 +13,15 @@ class NavMenuLoggedIn extends React.Component {
     case '1':
       this.props.history.push('/profile')
       break;
+    case '2.1':
+      this.props.history.push('/game_lists/owned_games');
+      break;
+    case '2.2':
+      this.props.history.push('/game_lists/wishlist');
+      break;
+    case '2.3':
+      this.props.history.push('/game_lists/saved_recommendations');
+      break;
     case '5':
       localStorage.removeItem("token");
       this.props.userLogout()

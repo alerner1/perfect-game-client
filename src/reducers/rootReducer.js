@@ -13,7 +13,8 @@ const defaultState = {
     searchResults: []
   },
   userPlayedGames: [],
-  playedGames: []
+  playedGames: [],
+  ownedGames: []
 };
 
 function userReducer(state = defaultState.user, action) {
@@ -168,11 +169,23 @@ function playedGamesReducer(state = defaultState.playedGames, action) {
   }
 }
 
+function ownedGamesReducer(state = defaultState.ownedGames, action) {
+  switch(action.type){
+    case "ADD_OWNED_GAMES":
+      return action.payload;
+    case "ADD_OWNED_GAME":
+      return [...state, action.payload]
+    default:
+      return state;
+  }
+}
+
 const appReducer = combineReducers({
   user: userReducer,
   games: gamesReducer,
   userPlayedGames: userPlayedGamesReducer,
-  playedGames: playedGamesReducer
+  playedGames: playedGamesReducer,
+  ownedGames: ownedGamesReducer
 });
 
 const rootReducer = (state, action) => {

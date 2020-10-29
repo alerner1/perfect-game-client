@@ -22,8 +22,7 @@ WEDNESDAY:
   * SORTA attend lecture on recommendation algorithms
 
 THURSDAY:
-  * make it so user can successfully edit their played games list. v annoying right now.
-    * so apparently my "component not rerendering" problem might have something to do with deep nesting. i can try creating a separate reducer for user played games maybe and seeing if that helps. and like storing it differently in state and stuff. because really that's the major bug right now.
+  * DONE make it so user can successfully edit their played games list. v annoying right now.
   * gameslists components tree: owned games grid, wishlist grid, savedrecs grid (w/ dummy data for now)
 
 FRIDAY:
