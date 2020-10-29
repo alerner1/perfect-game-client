@@ -10,6 +10,8 @@ TODOS
 
 * could put in a cancel button for saving changes to profile played games list maybe
 
+* make it so when you add to your played games list it doesn't automatically like it for you
+
 WEDNESDAY:
   * DONE figure out design for search results
   * DONE flesh out custom liked games list and custom liked game

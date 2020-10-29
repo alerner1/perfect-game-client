@@ -1,12 +1,12 @@
 import React from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { connect } from 'react-redux';
-import { addGame, likeGame } from '../../actions/gamesActions';
+import { addGame, likeGame, updateGameLikeValue } from '../../actions/gamesActions';
 
 class SearchResult extends React.Component {
   handleClick = event => {
     this.props.addGame(this.props.result);
-    this.props.likeGame(this.props.result);
+    this.props.updateGameLikeValue(this.props.result, 1);
   }
 
   mapPlatforms = () => {
@@ -34,7 +34,7 @@ class SearchResult extends React.Component {
 const mapDispatchToProps = dispatch => {
   return {
     addGame: (gameObj) => dispatch(addGame(gameObj)),
-    likeGame: (gameObj) => dispatch(likeGame(gameObj))
+    updateGameLikeValue: (gameObj, liked) => dispatch(updateGameLikeValue(gameObj, liked))
   }
 }
 

@@ -7,6 +7,8 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { changeUserPlayedGameLikeValue, saveUserPlayedGame } from '../../actions/userPlayedGamesActions';
 import { resetGames, addGames, updateGameLikeValue, markDisplayGameForDestruction } from '../../actions/gamesActions';
+import GameSearchBar from '../../Signup/components/GameSearchBar';
+import SearchResultsList from '../../Signup/components/SearchResultsList';
 
 class PlayedGamesList extends React.Component {
   state = {
@@ -95,17 +97,28 @@ class PlayedGamesList extends React.Component {
 
   render() {
     return (
-      <Card>
-        <Card.Body>
-          <Card.Title className="text-center">
-            Games You've Played
-            <Button className="ml-5" onClick={this.toggleEdit}>{this.state.edit ? 'Save' : 'Edit'}</Button>
-          </Card.Title>
-          <ListGroup>
-            {this.renderPlayedGames()}
-          </ListGroup>
-        </Card.Body>
-      </Card>
+      <>
+        <Card>
+          <Card.Body>
+            <Card.Title className="text-center">
+              Games You've Played
+              <Button className="ml-5" onClick={this.toggleEdit}>{this.state.edit ? 'Save' : 'Edit'}</Button>
+            </Card.Title>
+            <ListGroup>
+              {this.renderPlayedGames()}
+            </ListGroup>
+          </Card.Body>
+        </Card>
+        {this.state.edit ? 
+          <>
+            <h3 className="text-center">Add Another Game</h3>
+            <GameSearchBar />
+            <SearchResultsList />
+          </>
+          :
+          null
+        }
+      </>
     )
   }
 }
