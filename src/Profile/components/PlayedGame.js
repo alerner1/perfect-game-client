@@ -5,9 +5,13 @@ import { MdDelete } from 'react-icons/md';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux'
-import { changeUserPlayedGameLikeValue } from '../../actions/userPlayedGamesActions';
+import { changeUserPlayedGameLikeValue, markUserPlayedGameForDestruction } from '../../actions/userPlayedGamesActions';
 
 class PlayedGame extends React.Component {
+
+  state = {
+    destroy: false
+  }
 
   likeInfo = () => {
     if (this.props.likeValue > 0) {
@@ -23,6 +27,11 @@ class PlayedGame extends React.Component {
     } else {
       this.props.updateLikes(this.props.game, value)
     }
+  }
+
+  handleDestroy = () => {
+    this.props.markUserPlayedGameForDestruction(this.props.game)
+    this.setState({destroy: true})
   }
 
   whichActive = () => {
@@ -67,7 +76,7 @@ class PlayedGame extends React.Component {
       <>
         {this.whichActive()}
         
-        <Button onClick={this.handleClick}>
+        <Button onClick={this.handleDestroy}>
           <MdDelete />
         </Button>
       </>
@@ -76,7 +85,12 @@ class PlayedGame extends React.Component {
 
   render() {
     return (
-      <ListGroup.Item className="d-flex justify-content-between">
+      this.state.destroy ? 
+        null
+
+        :
+
+        <ListGroup.Item className="d-flex justify-content-between">
         {this.props.game.name}
         <div>
           {this.props.edit ? 
@@ -94,7 +108,8 @@ class PlayedGame extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    changeUserPlayedGameLikeValue: (gameObj, liked) => dispatch(changeUserPlayedGameLikeValue(gameObj, liked))
+    changeUserPlayedGameLikeValue: (gameObj, liked) => dispatch(changeUserPlayedGameLikeValue(gameObj, liked)),
+    markUserPlayedGameForDestruction: (gameObj) => dispatch(markUserPlayedGameForDestruction(gameObj))
   }
 }
 

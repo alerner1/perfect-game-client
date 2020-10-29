@@ -18,3 +18,4 @@ export function saveUserPlayedGame(user_played_game) {
   }
 }
 
+export const markUserPlayedGameForDestruction = (gameObj) => ({ type: "MARK_USER_PLAYED_GAME_FOR_DESTRUCTION", payload: gameObj })

@@ -17,10 +17,10 @@ class PlayedGamesList extends React.Component {
       let likeValue = 0;
       for (let userPlayedGame of this.props.userPlayedGames) {
         if (userPlayedGame.game_id === game.id) {
-          likeValue = userPlayedGame.liked
+          likeValue = userPlayedGame.liked;
         }
       }
-      return <PlayedGame key={game.id} game={game} likeValue={likeValue} updateLikes={this.updateLikes} edit={this.state.edit} />
+      return <PlayedGame key={game.id} game={game} likeValue={likeValue}updateLikes={this.updateLikes} edit={this.state.edit} />
     })
   }
 
@@ -32,7 +32,20 @@ class PlayedGamesList extends React.Component {
     this.setState(prev => ({edit: !prev.edit}), () => {
       if (this.state.edit === false) {
         for (let userPlayedGame of this.props.userPlayedGames) {
-          if (userPlayedGame.changed === true) {
+          if (userPlayedGame.destroy === true) {
+            const token = localStorage.getItem('token');
+            fetch(`http://localhost:3000/api/v1/user_played_games/${userPlayedGame.id}`, {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+                "Accepts": "application/json",
+                Authorization: `Bearer ${token}`
+              },
+              body: JSON.stringify({user_played_game: userPlayedGame})
+            })
+            .then(resp => resp.json())
+            .then(console.log)
+          } else if (userPlayedGame.changed === true) {
             this.props.saveUserPlayedGame(userPlayedGame)
           }
         }

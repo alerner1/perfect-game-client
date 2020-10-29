@@ -108,17 +108,25 @@ function gamesReducer(state = defaultState.games, action) {
 }
 
 function userPlayedGamesReducer(state = defaultState.userPlayedGames, action) {
+  let gameInArr;
+  let gameIndex;
+  let newList;
   switch(action.type){
     case "ADD_USER_PLAYED_GAMES":
       return action.payload
     case "CHANGE_USER_PLAYED_GAME_LIKE_VALUE":
       let copyOfState = [...state]
-      let gameInArr = copyOfState.filter(game => {return action.payload.game.id === game.game_id})
-      let gameIndex = copyOfState.indexOf(gameInArr[0]);
-      const newList = [...state];
+      gameInArr = copyOfState.filter(game => {return action.payload.game.id === game.game_id})
+      gameIndex = copyOfState.indexOf(gameInArr[0]);
+      newList = [...state];
       newList[gameIndex]['liked'] = action.payload.liked;
       newList[gameIndex]['changed'] = true;
       return newList
+    case "MARK_USER_PLAYED_GAME_FOR_DESTRUCTION":
+      gameInArr = [...state].filter(game => {return action.payload.id === game.game_id});
+      gameIndex = state.indexOf(gameInArr[0]);
+      newList = [...state];
+      newList[gameIndex]['destroy'] = true;
     default:
       return state;
   }

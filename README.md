@@ -8,6 +8,8 @@ TODOS
 
 * make it so state knows when it's doing fetch requesty stuff and front end says loading when it's still working on that for profile
 
+* could put in a cancel button for saving changes to profile played games list maybe
+
 WEDNESDAY:
   * DONE figure out design for search results
   * DONE flesh out custom liked games list and custom liked game
