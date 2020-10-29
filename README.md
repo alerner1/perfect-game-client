@@ -23,7 +23,14 @@ WEDNESDAY:
 
 THURSDAY:
   * DONE make it so user can successfully edit their played games list. v annoying right now.
-  * gameslists components tree: owned games grid, wishlist grid, savedrecs grid (w/ dummy data for now)
+  * DONE gameslists components tree: owned games grid 
+  * wishlist grid 
+  * savedrecs grid (w/ dummy data for now)
+
+  * do the same thing as for owned list but for wish and saved
+  * should probably fix the messiness of game[cover][url] vs game[cover_url] although the workaround is fine for now
+  * make it so you can delete stuff from your owned list as well as other lists
+  * need to clear the search on submit
 
 FRIDAY:
   * recommendations components tree: recs carousel, gameinfo container (w/ dummy data for now)
