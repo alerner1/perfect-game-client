@@ -2,7 +2,7 @@ import React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { connect } from 'react-redux';
-import { resetUser, resetSignupStep } from '../../actions/userActions';
+import { resetUser, resetSignupStep, userLogout } from '../../actions/userActions';
 import { resetGames } from '../../actions/gamesActions';
 import Navbar from 'react-bootstrap/Navbar';
 import { withRouter } from 'react-router-dom';
@@ -15,8 +15,7 @@ class NavMenuLoggedIn extends React.Component {
       break;
     case '5':
       localStorage.removeItem("token");
-      this.props.resetUser();
-      this.props.resetGames();
+      this.props.userLogout()
       this.props.history.push('/login')
       break;
     default:
@@ -62,7 +61,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     resetUser: () => dispatch(resetUser()),
     resetGames: () => dispatch(resetGames()),
-    resetSignupStep: () => dispatch(resetSignupStep())    
+    resetSignupStep: () => dispatch(resetSignupStep()),
+    userLogout: () => dispatch(userLogout())    
   }
 };
 

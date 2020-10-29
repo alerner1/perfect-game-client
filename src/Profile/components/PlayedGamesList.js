@@ -5,20 +5,34 @@ import { getUser } from '../../actions/userActions';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import { changeUserPlayedGameLikeValue } from '../../actions/userPlayedGamesActions';
+
 class PlayedGamesList extends React.Component {
   state = {
     edit: false
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.userPlayedGames !== this.props.userPlayedGames) {
+      console.log('changed')
+      this.renderPlayedGames()
+    }
+  }
+
   renderPlayedGames = () => {
     return this.props.playedGames.map(game => {
+      let likeValue = 0;
       for (let userPlayedGame of this.props.userPlayedGames) {
         if (userPlayedGame.game_id === game.id) {
-          game['liked'] = userPlayedGame.liked
+          likeValue = userPlayedGame.liked
         }
       }
-      return <PlayedGame key={game.id} game={game} edit={this.state.edit} />
+      return <PlayedGame key={game.id} game={game} likeValue={likeValue} updateLikes={this.updateLikes} edit={this.state.edit} />
     })
+  }
+
+  updateLikes = (gameObj, liked) => {
+    this.props.changeUserPlayedGameLikeValue(gameObj, liked)
   }
 
   toggleEdit = () => {
@@ -44,14 +58,15 @@ class PlayedGamesList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    playedGames: state.user.currentUser.played_games,
-    userPlayedGames: state.user.currentUser.user_played_games
+    playedGames: state.playedGames,
+    userPlayedGames: state.userPlayedGames
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUser: () => dispatch(getUser())
+    getUser: () => dispatch(getUser()),
+    changeUserPlayedGameLikeValue: (gameObj, liked) => dispatch(changeUserPlayedGameLikeValue(gameObj, liked))
   }
 }
 

@@ -13,8 +13,15 @@ export function createUser(formData) {
       .then(response => response.json())
       .then(json => {
         localStorage.setItem("token", json.jwt);
-        dispatch({ type: 'SET_USER', payload: json.user });
+        dispatch({ type: 'SET_USER', payload: {
+          id: json.user.id,
+          email: json.user.email,
+          steam_name: json.user.steam_name,
+          steam_id: json.user.steam_id
+        } });
         dispatch({ type: 'INCREMENT_SIGNUP_STEP'});
+        dispatch({ type: 'ADD_USER_PLAYED_GAMES', payload: json.user['user_played_games'] })
+        dispatch({ type: 'ADD_PLAYED_GAMES', payload: json.user['played_games']})
       })
   }
 }
@@ -34,7 +41,14 @@ export function loginUser(formData) {
       .then(response => response.json())
       .then(json => {
         localStorage.setItem("token", json.jwt);
-        dispatch({ type: 'SET_USER', payload: json.user })
+        dispatch({ type: 'SET_USER', payload: {
+          id: json.user.id,
+          email: json.user.email,
+          steam_name: json.user.steam_name,
+          steam_id: json.user.steam_id
+        } });
+        dispatch({ type: 'ADD_USER_PLAYED_GAMES', payload: json.user['user_played_games'] })
+        dispatch({ type: 'ADD_PLAYED_GAMES', payload: json.user['played_games']})
       })
   }
 }
@@ -49,7 +63,14 @@ export function getUser() {
     })
       .then(response => response.json())
       .then(json => {
-        dispatch({ type: 'SET_USER', payload: json.user });
+        dispatch({ type: 'SET_USER', payload: {
+          id: json.user.id,
+          email: json.user.email,
+          steam_name: json.user.steam_name,
+          steam_id: json.user.steam_id
+        } });
+        dispatch({ type: 'ADD_USER_PLAYED_GAMES', payload: json.user['user_played_games'] })
+        dispatch({ type: 'ADD_PLAYED_GAMES', payload: json.user['played_games']})
       });
   };
 }
@@ -64,4 +85,4 @@ export const resetSignupStep = () => ({ type: "RESET_SIGNUP_STEP" })
 
 export const resetUser = () => ({ type: "RESET_USER" })
 
-export const changeUserPlayedGameLikeValue = (gameObj, liked) => ({ type: "CHANGE_USER_PLAYED_GAME_LIKE_VALUE", payload: {game: gameObj, liked: liked} })
+export const userLogout = () => ({ type: "USER_LOGOUT" })

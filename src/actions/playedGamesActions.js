@@ -1,0 +1,1 @@
+export const addPlayedGames = (gamesArray) => ({ type: "ADD_PLAYED_GAMES", payload: gamesArray })

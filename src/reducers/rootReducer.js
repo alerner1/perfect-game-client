@@ -11,7 +11,9 @@ const defaultState = {
     requesting: false,
     search: '',
     searchResults: []
-  }
+  },
+  userPlayedGames: [],
+  playedGames: []
 };
 
 function userReducer(state = defaultState.user, action) {
@@ -46,17 +48,6 @@ function userReducer(state = defaultState.user, action) {
         ...state,
         signupStep: 0
       }
-    case "CHANGE_USER_PLAYED_GAME_LIKE_VALUE":
-        let gameIndex = state.currentUser['user_played_games'].findIndex(game => {return action.payload.game.id === game.game_id});
-        const newList = [...state.currentUser['user_played_games']];
-        newList[gameIndex]['liked'] = action.payload.liked;
-        return {
-          ...state,
-          currentUser: {
-            ...state.currentUser,
-            user_played_games: newList
-          }
-        }
     case "RESET_USER":
       return defaultState.user
     default: 
@@ -116,9 +107,44 @@ function gamesReducer(state = defaultState.games, action) {
   }
 }
 
-const rootReducer = combineReducers({
+function userPlayedGamesReducer(state = defaultState.userPlayedGames, action) {
+  switch(action.type){
+    case "ADD_USER_PLAYED_GAMES":
+      return action.payload
+    case "CHANGE_USER_PLAYED_GAME_LIKE_VALUE":
+      let copyOfState = [...state]
+      let gameInArr = copyOfState.filter(game => {return action.payload.game.id === game.game_id})
+      let gameIndex = copyOfState.indexOf(gameInArr[0]);
+      const newList = [...state];
+      newList[gameIndex]['liked'] = action.payload.liked;
+      return newList
+    default:
+      return state;
+  }
+}
+
+function playedGamesReducer(state = defaultState.playedGames, action) {
+  switch(action.type){
+    case "ADD_PLAYED_GAMES":
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
+const appReducer = combineReducers({
   user: userReducer,
-  games: gamesReducer
+  games: gamesReducer,
+  userPlayedGames: userPlayedGamesReducer,
+  playedGames: playedGamesReducer
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === 'USER_LOGOUT') {
+    state = undefined
+  }
+
+  return appReducer(state, action)
+}
 
 export default rootReducer;

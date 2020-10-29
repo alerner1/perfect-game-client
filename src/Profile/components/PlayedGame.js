@@ -5,24 +5,31 @@ import { MdDelete } from 'react-icons/md';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux'
-import { changeUserPlayedGameLikeValue } from '../../actions/userActions';
+import { changeUserPlayedGameLikeValue } from '../../actions/userPlayedGamesActions';
 
 class PlayedGame extends React.Component {
-  state = {
-    value: [this.props.game.liked]
+  // state = {
+  //   value: [this.props.likeValue]
+  // }
+
+  componentDidUpdate(prevProps) {
+    console.log(this.props)
+    if (prevProps !== this.props) {
+      this.whichActive()
+    }
   }
 
   likeInfo = () => {
-    if (this.props.game.liked > 0) {
+    if (this.props.likeValue > 0) {
       return <FaThumbsUp />
-    } else if (this.props.game.liked < 0) {
+    } else if (this.props.likeValue < 0) {
       return <FaThumbsDown />
     }    
   }
 
   handleChange = (event) => {
-    if (event === this.props.game.liked) {
-      this.props.changeUserPlayedGameLikeValue(this.props.game, 0)
+    if (event === this.props.likeValue) {
+      this.props.updateLikes(this.props.game, 0)
 
       // ok... this works in terms of changing state, but it is once again not fetching. why????
 
@@ -33,7 +40,7 @@ class PlayedGame extends React.Component {
   }
 
   whichActive = () => {
-    if (this.props.game.liked === 1) {
+    if (this.props.likeValue === 1) {
       return (
         <ButtonGroup>
           <Button value={1} onClick={() => this.handleChange(1)} active>
@@ -44,7 +51,7 @@ class PlayedGame extends React.Component {
           </Button>
         </ButtonGroup>
       )
-    } else if (this.props.game.liked === -1) {
+    } else if (this.props.likeValue === -1) {
       return (
         <ButtonGroup>
           <Button value={1}>
