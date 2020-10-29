@@ -6,26 +6,35 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { changeUserPlayedGameLikeValue, saveUserPlayedGame } from '../../actions/userPlayedGamesActions';
+import { resetGames, addGames, updateGameLikeValue } from '../../actions/gamesActions';
 
 class PlayedGamesList extends React.Component {
   state = {
     edit: false
   }
 
-  renderPlayedGames = () => {
-    return this.props.playedGames.map(game => {
-      let likeValue = 0;
-      for (let userPlayedGame of this.props.userPlayedGames) {
-        if (userPlayedGame.game_id === game.id) {
-          likeValue = userPlayedGame.liked;
-        }
+  componentDidUpdate(prevProps) {
+    // maybe this is a good time to move everything into displayGames? like reset and then do that
+    if (prevProps.playedGames.length === 0 && prevProps.playedGames !== this.props.playedGames) {
+      this.props.resetGames();
+      console.log('reset')
+      const toDisplay = [...this.props.playedGames];
+      for (let game of toDisplay) {
+        game.liked = this.props.userPlayedGames.find(userPlayedGame => { return userPlayedGame.game_id === game.id }).liked
       }
-      return <PlayedGame key={game.id} game={game} likeValue={likeValue}updateLikes={this.updateLikes} edit={this.state.edit} />
+      this.props.addGames(toDisplay)
+    }
+  }
+
+  renderPlayedGames = () => {
+    console.log(this.props.displayGames)
+    return this.props.displayGames.map(game => {
+      return <PlayedGame key={game.id} game={game} liked={game.liked} updateLikes={this.updateLikes} edit={this.state.edit} />
     })
   }
 
   updateLikes = (gameObj, liked) => {
-    this.props.changeUserPlayedGameLikeValue(gameObj, liked)
+    this.props.updateGameLikeValue(gameObj, liked)
   }
 
   toggleEdit = () => {
@@ -50,6 +59,8 @@ class PlayedGamesList extends React.Component {
           }
         }
         this.props.getUser()
+      } else {
+        // move display stuff into displayGames and render that way?
       }
     })
   }
@@ -74,7 +85,8 @@ class PlayedGamesList extends React.Component {
 const mapStateToProps = state => {
   return {
     playedGames: state.playedGames,
-    userPlayedGames: state.userPlayedGames
+    userPlayedGames: state.userPlayedGames,
+    displayGames: state.games.displayGames
   }
 }
 
@@ -82,7 +94,10 @@ const mapDispatchToProps = dispatch => {
   return {
     getUser: () => dispatch(getUser()),
     changeUserPlayedGameLikeValue: (gameObj, liked) => dispatch(changeUserPlayedGameLikeValue(gameObj, liked)),
-    saveUserPlayedGame: (gameObj) => dispatch(saveUserPlayedGame(gameObj))
+    saveUserPlayedGame: (gameObj) => dispatch(saveUserPlayedGame(gameObj)),
+    resetGames: () => dispatch(resetGames()),
+    addGames: (gamesArray) => dispatch(addGames(gamesArray)),
+    updateGameLikeValue: (gameObj, liked) => dispatch(updateGameLikeValue(gameObj, liked))
   }
 }
 

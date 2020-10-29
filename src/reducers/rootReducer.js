@@ -59,6 +59,11 @@ function gamesReducer(state = defaultState.games, action) {
   let gameIndex;
   let newList;
   switch(action.type){
+    case "ADD_GAMES":
+      return {
+        ...state,
+        displayGames: action.payload
+      }
     case "ADD_GAME":
       return {
         ...state,
@@ -76,6 +81,16 @@ function gamesReducer(state = defaultState.games, action) {
       gameIndex = state.displayGames.indexOf(action.payload);
       newList = state.displayGames.slice();
       newList[gameIndex]['liked'] = false;
+      return {
+        ...state,
+        displayGames: newList
+      }
+    case "UPDATE_GAME_LIKE_VALUE":
+      // update this later so it's comparing something unique like the id
+      // need name for now because ids are complicated
+      gameIndex = state.displayGames.findIndex(game => { return game.name === action.payload.game.name });
+      newList = state.displayGames.slice();
+      newList[gameIndex]['liked'] = action.payload.liked;
       return {
         ...state,
         displayGames: newList

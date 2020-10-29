@@ -14,15 +14,15 @@ class PlayedGame extends React.Component {
   }
 
   likeInfo = () => {
-    if (this.props.likeValue > 0) {
+    if (this.props.liked > 0) {
       return <FaThumbsUp />
-    } else if (this.props.likeValue < 0) {
+    } else if (this.props.liked < 0) {
       return <FaThumbsDown />
     }    
   }
 
   handleChange = (value) => {
-    if (value === this.props.likeValue) {
+    if (value === this.props.liked) {
       this.props.updateLikes(this.props.game, 0)
     } else {
       this.props.updateLikes(this.props.game, value)
@@ -35,7 +35,7 @@ class PlayedGame extends React.Component {
   }
 
   whichActive = () => {
-    if (this.props.likeValue === 1) {
+    if (this.props.liked === 1) {
       return (
         <ButtonGroup>
           <Button value={1} onClick={() => this.handleChange(1)} active>
@@ -46,7 +46,7 @@ class PlayedGame extends React.Component {
           </Button>
         </ButtonGroup>
       )
-    } else if (this.props.likeValue === -1) {
+    } else if (this.props.liked === -1) {
       return (
         <ButtonGroup>
           <Button value={1} onClick={() => this.handleChange(1)}>

@@ -1,10 +1,14 @@
-export const addGame = (gameObj) => ({ type: "ADD_GAME", payload: gameObj})
+export const addGame = (gameObj) => ({ type: "ADD_GAME", payload: gameObj })
+
+export const addGames = (gamesArray) => ({ type: "ADD_GAMES", payload: gamesArray })
 
 export const clearGames = () => ({ type: "CLEAR_GAMES" })
 
 export const likeGame = (gameObj) => ({ type: "LIKE_GAME", payload: gameObj })
 
 export const unlikeGame = (gameObj) => ({ type: "UNLIKE_GAME", payload: gameObj })
+
+export const updateGameLikeValue = (gameObj, value) => ({type: "UPDATE_GAME_LIKE_VALUE", payload: {game: gameObj, liked: value}})
 
 export function getPopularGames() {
   return (dispatch) => {
