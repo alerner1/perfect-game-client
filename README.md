@@ -9,14 +9,17 @@ TODOS
 * make it so state knows when it's doing fetch requesty stuff and front end says loading when it's still working on that for profile
 
 WEDNESDAY:
-  * figure out design for search results
-  * flesh out custom liked games list and custom liked game
-  * add games to user played games (with like) on submit
-  * pitch wireframes etc
-  * profile components tree: display information in profile and get edit profile form working
-  * attend lecture on recommendation algorithms
+  * DONE figure out design for search results
+  * DONE flesh out custom liked games list and custom liked game
+  * DONE add games to user played games (with like) on submit
+  * DONE pitch wireframes etc
+  * DONE profile components tree: display information in profile  
+  * um... started? get edit profile form working
+  * SORTA attend lecture on recommendation algorithms
 
 THURSDAY:
+  * make it so user can successfully edit their played games list. v annoying right now.
+    * so apparently my "component not rerendering" problem might have something to do with deep nesting. i can try creating a separate reducer for user played games maybe and seeing if that helps. and like storing it differently in state and stuff. because really that's the major bug right now.
   * gameslists components tree: owned games grid, wishlist grid, savedrecs grid (w/ dummy data for now)
 
 FRIDAY:

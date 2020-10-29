@@ -5,7 +5,6 @@ import { getUser } from '../../actions/userActions';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-
 class PlayedGamesList extends React.Component {
   state = {
     edit: false

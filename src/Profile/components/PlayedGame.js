@@ -4,6 +4,8 @@ import { FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
+import { connect } from 'react-redux'
+import { changeUserPlayedGameLikeValue } from '../../actions/userActions';
 
 class PlayedGame extends React.Component {
   state = {
@@ -18,30 +20,37 @@ class PlayedGame extends React.Component {
     }    
   }
 
-  handleChange = () => {
-    console.log('event')
+  handleChange = (event) => {
+    if (event === this.props.game.liked) {
+      this.props.changeUserPlayedGameLikeValue(this.props.game, 0)
+
+      // ok... this works in terms of changing state, but it is once again not fetching. why????
+
+      // also we still have to update the backend (on save i guess). so annoying.
+    } else {
+      // do a fetch to update the user played game's liked thingy to the same as event.target.value (via another if statement) and then get user again orrrr update it in state and then do the fetch to correspond
+    }
   }
 
   whichActive = () => {
     if (this.props.game.liked === 1) {
       return (
         <ButtonGroup>
-          <Button onClick={event => this.handleChange(event)} active>
-            like
-            {/* <FaThumbsUp onClick={event => this.handleChange(event)} /> */}
+          <Button value={1} onClick={() => this.handleChange(1)} active>
+            <FaThumbsUp />
           </Button>
-          <Button onClick={this.handleChange}>
-            <FaThumbsDown onClick={event => this.handleChange(event)}/>
+          <Button value={-1} onClick={this.handleChange}>
+            <FaThumbsDown />
           </Button>
         </ButtonGroup>
       )
     } else if (this.props.game.liked === -1) {
       return (
         <ButtonGroup>
-          <Button >
+          <Button value={1}>
             <FaThumbsUp />
           </Button>
-          <Button onClick={this.handleChange} active>
+          <Button value={-1} onClick={this.handleChange} active>
             <FaThumbsDown />
           </Button>
         </ButtonGroup>
@@ -49,10 +58,10 @@ class PlayedGame extends React.Component {
     } else {
       return (
         <ButtonGroup>
-          <Button onClick={this.handleChange} >
+          <Button value={1} onClick={this.handleChange} >
             <FaThumbsUp />
           </Button>
-          <Button onClick={this.handleChange}>
+          <Button value={-1} onClick={this.handleChange}>
             <FaThumbsDown />
           </Button>
         </ButtonGroup>
@@ -72,8 +81,7 @@ class PlayedGame extends React.Component {
         {this.whichActive()}
         
         <Button onClick={this.handleClick}>
-          {/* <MdDelete /> */}
-          delete
+          <MdDelete />
         </Button>
       </>
     )
@@ -97,4 +105,10 @@ class PlayedGame extends React.Component {
   }
 }
 
-export default PlayedGame;
+const mapDispatchToProps = dispatch => {
+  return {
+    changeUserPlayedGameLikeValue: (gameObj, liked) => dispatch(changeUserPlayedGameLikeValue(gameObj, liked))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(PlayedGame);

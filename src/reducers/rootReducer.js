@@ -46,6 +46,17 @@ function userReducer(state = defaultState.user, action) {
         ...state,
         signupStep: 0
       }
+    case "CHANGE_USER_PLAYED_GAME_LIKE_VALUE":
+        let gameIndex = state.currentUser['user_played_games'].findIndex(game => {return action.payload.game.id === game.game_id});
+        const newList = [...state.currentUser['user_played_games']];
+        newList[gameIndex]['liked'] = action.payload.liked;
+        return {
+          ...state,
+          currentUser: {
+            ...state.currentUser,
+            user_played_games: newList
+          }
+        }
     case "RESET_USER":
       return defaultState.user
     default: 

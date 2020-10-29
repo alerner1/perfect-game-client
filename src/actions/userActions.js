@@ -63,3 +63,5 @@ export const decrementSignupStep = () => ({ type: "DECREMENT_SIGNUP_STEP" })
 export const resetSignupStep = () => ({ type: "RESET_SIGNUP_STEP" })
 
 export const resetUser = () => ({ type: "RESET_USER" })
+
+export const changeUserPlayedGameLikeValue = (gameObj, liked) => ({ type: "CHANGE_USER_PLAYED_GAME_LIKE_VALUE", payload: {game: gameObj, liked: liked} })
