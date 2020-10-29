@@ -117,6 +117,7 @@ function userPlayedGamesReducer(state = defaultState.userPlayedGames, action) {
       let gameIndex = copyOfState.indexOf(gameInArr[0]);
       const newList = [...state];
       newList[gameIndex]['liked'] = action.payload.liked;
+      newList[gameIndex]['changed'] = true;
       return newList
     default:
       return state;

@@ -8,16 +8,6 @@ import { connect } from 'react-redux'
 import { changeUserPlayedGameLikeValue } from '../../actions/userPlayedGamesActions';
 
 class PlayedGame extends React.Component {
-  // state = {
-  //   value: [this.props.likeValue]
-  // }
-
-  componentDidUpdate(prevProps) {
-    console.log(this.props)
-    if (prevProps !== this.props) {
-      this.whichActive()
-    }
-  }
 
   likeInfo = () => {
     if (this.props.likeValue > 0) {
@@ -27,15 +17,11 @@ class PlayedGame extends React.Component {
     }    
   }
 
-  handleChange = (event) => {
-    if (event === this.props.likeValue) {
+  handleChange = (value) => {
+    if (value === this.props.likeValue) {
       this.props.updateLikes(this.props.game, 0)
-
-      // ok... this works in terms of changing state, but it is once again not fetching. why????
-
-      // also we still have to update the backend (on save i guess). so annoying.
     } else {
-      // do a fetch to update the user played game's liked thingy to the same as event.target.value (via another if statement) and then get user again orrrr update it in state and then do the fetch to correspond
+      this.props.updateLikes(this.props.game, value)
     }
   }
 
@@ -46,7 +32,7 @@ class PlayedGame extends React.Component {
           <Button value={1} onClick={() => this.handleChange(1)} active>
             <FaThumbsUp />
           </Button>
-          <Button value={-1} onClick={this.handleChange}>
+          <Button value={-1} onClick={() => this.handleChange(-1)}>
             <FaThumbsDown />
           </Button>
         </ButtonGroup>
@@ -54,10 +40,10 @@ class PlayedGame extends React.Component {
     } else if (this.props.likeValue === -1) {
       return (
         <ButtonGroup>
-          <Button value={1}>
+          <Button value={1} onClick={() => this.handleChange(1)}>
             <FaThumbsUp />
           </Button>
-          <Button value={-1} onClick={this.handleChange} active>
+          <Button value={-1} onClick={() => this.handleChange(-1)} active>
             <FaThumbsDown />
           </Button>
         </ButtonGroup>
@@ -65,10 +51,10 @@ class PlayedGame extends React.Component {
     } else {
       return (
         <ButtonGroup>
-          <Button value={1} onClick={this.handleChange} >
+          <Button value={1} onClick={() => this.handleChange(1)} >
             <FaThumbsUp />
           </Button>
-          <Button value={-1} onClick={this.handleChange}>
+          <Button value={-1} onClick={() => this.handleChange(-1)}>
             <FaThumbsDown />
           </Button>
         </ButtonGroup>
@@ -76,12 +62,6 @@ class PlayedGame extends React.Component {
     }
   }
 
-  handleClick = () => {
-    console.log('clicked')
-  }
-
-  // make it so you can't have both buttons checked but you can have none
-  // also when you click them it should do a fetch request and stuff
   editButtons = () => {
     return (
       <>

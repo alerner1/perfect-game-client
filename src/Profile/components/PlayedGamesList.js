@@ -5,18 +5,11 @@ import { getUser } from '../../actions/userActions';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import { changeUserPlayedGameLikeValue } from '../../actions/userPlayedGamesActions';
+import { changeUserPlayedGameLikeValue, saveUserPlayedGame } from '../../actions/userPlayedGamesActions';
 
 class PlayedGamesList extends React.Component {
   state = {
     edit: false
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.userPlayedGames !== this.props.userPlayedGames) {
-      console.log('changed')
-      this.renderPlayedGames()
-    }
   }
 
   renderPlayedGames = () => {
@@ -36,7 +29,16 @@ class PlayedGamesList extends React.Component {
   }
 
   toggleEdit = () => {
-    this.setState(prev => ({edit: !prev.edit}))
+    this.setState(prev => ({edit: !prev.edit}), () => {
+      if (this.state.edit === false) {
+        for (let userPlayedGame of this.props.userPlayedGames) {
+          if (userPlayedGame.changed === true) {
+            this.props.saveUserPlayedGame(userPlayedGame)
+          }
+        }
+        this.props.getUser()
+      }
+    })
   }
 
   render() {
@@ -66,7 +68,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getUser: () => dispatch(getUser()),
-    changeUserPlayedGameLikeValue: (gameObj, liked) => dispatch(changeUserPlayedGameLikeValue(gameObj, liked))
+    changeUserPlayedGameLikeValue: (gameObj, liked) => dispatch(changeUserPlayedGameLikeValue(gameObj, liked)),
+    saveUserPlayedGame: (gameObj) => dispatch(saveUserPlayedGame(gameObj))
   }
 }
 
