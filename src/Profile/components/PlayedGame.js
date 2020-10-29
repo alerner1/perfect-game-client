@@ -6,6 +6,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux'
 import { changeUserPlayedGameLikeValue, markUserPlayedGameForDestruction } from '../../actions/userPlayedGamesActions';
+import{ markDisplayGameForDestruction } from '../../actions/gamesActions';
 
 class PlayedGame extends React.Component {
 
@@ -30,7 +31,7 @@ class PlayedGame extends React.Component {
   }
 
   handleDestroy = () => {
-    this.props.markUserPlayedGameForDestruction(this.props.game)
+    this.props.markDisplayGameForDestruction(this.props.game)
     this.setState({destroy: true})
   }
 
@@ -109,7 +110,8 @@ class PlayedGame extends React.Component {
 const mapDispatchToProps = dispatch => {
   return {
     changeUserPlayedGameLikeValue: (gameObj, liked) => dispatch(changeUserPlayedGameLikeValue(gameObj, liked)),
-    markUserPlayedGameForDestruction: (gameObj) => dispatch(markUserPlayedGameForDestruction(gameObj))
+    markUserPlayedGameForDestruction: (gameObj) => dispatch(markUserPlayedGameForDestruction(gameObj)),
+    markDisplayGameForDestruction: (gameObj) => dispatch(markDisplayGameForDestruction(gameObj))
   }
 }
 

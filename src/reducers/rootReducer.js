@@ -58,6 +58,7 @@ function userReducer(state = defaultState.user, action) {
 function gamesReducer(state = defaultState.games, action) {
   let gameIndex;
   let newList;
+  let gameInArr;
   switch(action.type){
     case "ADD_GAMES":
       return {
@@ -90,7 +91,18 @@ function gamesReducer(state = defaultState.games, action) {
       // need name for now because ids are complicated
       gameIndex = state.displayGames.findIndex(game => { return game.name === action.payload.game.name });
       newList = state.displayGames.slice();
-      newList[gameIndex]['liked'] = action.payload.liked;
+      newList[gameIndex] = {
+        ...newList[gameIndex],
+        liked: action.payload.liked
+        }
+      return {
+        ...state,
+        displayGames: newList
+      }
+    case "MARK_DISPLAY_GAME_FOR_DESTRUCTION":
+      gameIndex = state.displayGames.findIndex(game => { return game.name === action.payload.name });
+      newList = [...state.displayGames];
+      newList[gameIndex]['destroy'] = true;
       return {
         ...state,
         displayGames: newList

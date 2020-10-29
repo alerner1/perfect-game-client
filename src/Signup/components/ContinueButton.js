@@ -5,9 +5,8 @@ import { incrementSignupStep, getUser } from '../../actions/userActions';
 
 class ContinueButton extends React.Component {
   handleClick = () => {
-    this.props.incrementSignupStep();
-
     this.saveLikedGames();
+    this.props.incrementSignupStep();
   }
 
   saveLikedGames = () => {
@@ -44,7 +43,7 @@ class ContinueButton extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    likedGames: state.games.displayGames.filter(game => game['liked'] === true)
+    likedGames: state.games.displayGames.filter(game => game['liked'] === 1)
   }
 }
 

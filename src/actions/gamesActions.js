@@ -10,6 +10,8 @@ export const unlikeGame = (gameObj) => ({ type: "UNLIKE_GAME", payload: gameObj 
 
 export const updateGameLikeValue = (gameObj, value) => ({type: "UPDATE_GAME_LIKE_VALUE", payload: {game: gameObj, liked: value}})
 
+export const markDisplayGameForDestruction = (gameObj) => ({ type: "MARK_DISPLAY_GAME_FOR_DESTRUCTION", payload: gameObj })
+
 export function getPopularGames() {
   return (dispatch) => {
     fetch('http://localhost:3000/api/v1/games/popular', {

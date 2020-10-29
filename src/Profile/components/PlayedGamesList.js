@@ -6,11 +6,20 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { changeUserPlayedGameLikeValue, saveUserPlayedGame } from '../../actions/userPlayedGamesActions';
-import { resetGames, addGames, updateGameLikeValue } from '../../actions/gamesActions';
+import { resetGames, addGames, updateGameLikeValue, markDisplayGameForDestruction } from '../../actions/gamesActions';
 
 class PlayedGamesList extends React.Component {
   state = {
     edit: false
+  }
+
+  componentDidMount() {
+    this.props.resetGames();
+    const toDisplay = [...this.props.playedGames];
+      for (let game of toDisplay) {
+        game.liked = this.props.userPlayedGames.find(userPlayedGame => { return userPlayedGame.game_id === game.id }).liked
+      }
+    this.props.addGames(toDisplay);
   }
 
   componentDidUpdate(prevProps) {
@@ -40,28 +49,47 @@ class PlayedGamesList extends React.Component {
   toggleEdit = () => {
     this.setState(prev => ({edit: !prev.edit}), () => {
       if (this.state.edit === false) {
-        for (let userPlayedGame of this.props.userPlayedGames) {
-          if (userPlayedGame.destroy === true) {
-            const token = localStorage.getItem('token');
-            fetch(`http://localhost:3000/api/v1/user_played_games/${userPlayedGame.id}`, {
-              method: "DELETE",
+        
+        const token = localStorage.getItem('token')
+        for (let game of this.props.displayGames) {
+          if (game.destroy !== true) {
+            fetch('http://localhost:3000/api/v1/user_played_games', {
+              method: "POST",
               headers: {
                 "Content-Type": "application/json",
                 "Accepts": "application/json",
                 Authorization: `Bearer ${token}`
               },
-              body: JSON.stringify({user_played_game: userPlayedGame})
+              body: JSON.stringify({
+                game_id: game['igdb_id'],
+                liked: game['liked'],
+                game: {
+                  igdb_id: game['idgb_id'],
+                  name: game['name'],
+                  cover_url: game['cover_url'],
+                  release_date: game['first_release_date'],
+                  platforms: game['platforms']
+                }
+              })
             })
             .then(resp => resp.json())
             .then(console.log)
-          } else if (userPlayedGame.changed === true) {
-            this.props.saveUserPlayedGame(userPlayedGame)
+          } else if (game.destroy === true && typeof(game.id) !== 'undefined') {
+            const u_p_game_id = this.props.userPlayedGames.find(u_p_game => { return u_p_game.game_id === game.id}).id
+            fetch(`http://localhost:3000/api/v1/user_played_games/${u_p_game_id}`, {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+                "Accepts": "application/json",
+                Authorization: `Bearer ${token}`
+              }
+            })
+            .then(resp => resp.json())
+            .then(console.log('BALEETED'))
           }
         }
         this.props.getUser()
-      } else {
-        // move display stuff into displayGames and render that way?
-      }
+      } 
     })
   }
 
