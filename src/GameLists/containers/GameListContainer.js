@@ -1,6 +1,5 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
 import OwnedList from '../components/OwnedList';
 import WishList from '../components/WishList';
 import SavedRecommendationsList from '../components/SavedRecommendationsList';

@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { getPopularGames, clearGames, likeGame, unlikeGame, updateGameLikeValue } from '../../actions/gamesActions';
 import PopularGame from './PopularGame';
 import Container from 'react-bootstrap/Container';
-import CardDeck from 'react-bootstrap/CardDeck';
-import CardGroup from 'react-bootstrap/CardGroup'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 

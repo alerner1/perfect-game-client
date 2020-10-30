@@ -10,7 +10,7 @@ class GameCard extends React.Component {
           <Card.Img 
             style={{cursor: 'pointer', opacity: 1.0}} 
             variant="bottom" 
-            src={ this.props.game['cover'] && this.props.game['cover']['url'] || this.props.game['cover_url']} />
+            src={ (this.props.game['cover'] && this.props.game['cover']['url']) || this.props.game['cover_url']} />
         </Card>
       </Col>
     )

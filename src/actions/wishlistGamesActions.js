@@ -19,7 +19,7 @@ export function saveWishlistGames(gamesArray) {
           game: {
             igdb_id: game['id'],
             name: game['name'],
-            cover_url: game['cover'] && game['cover']['url'] || game['cover_url'],
+            cover_url: (game['cover'] && game['cover']['url']) || game['cover_url'],
             release_date: game['first_release_date'],
             platforms: game['platforms']
           }

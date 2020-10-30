@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import { createUser } from '../../actions/userActions';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class SignupForm extends React.Component {
   state = {

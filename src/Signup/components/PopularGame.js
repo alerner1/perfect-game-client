@@ -1,8 +1,6 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
-import { likeGame, unlikeGame } from '../../actions/gamesActions';
-import { connect } from 'react-redux';
 
 class PopularGame extends React.Component {
   state = {

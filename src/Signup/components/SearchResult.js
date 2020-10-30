@@ -1,7 +1,7 @@
 import React from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { connect } from 'react-redux';
-import { addGame, likeGame, updateGameLikeValue } from '../../actions/gamesActions';
+import { addGame, updateGameLikeValue } from '../../actions/gamesActions';
 
 class SearchResult extends React.Component {
   handleClick = event => {

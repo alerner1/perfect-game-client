@@ -6,7 +6,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { changeUserPlayedGameLikeValue, saveUserPlayedGame } from '../../actions/userPlayedGamesActions';
-import { resetGames, addGames, updateGameLikeValue, markDisplayGameForDestruction } from '../../actions/gamesActions';
+import { resetGames, addGames, updateGameLikeValue } from '../../actions/gamesActions';
 import GameSearchBar from '../../Signup/components/GameSearchBar';
 import SearchResultsList from '../../Signup/components/SearchResultsList';
 

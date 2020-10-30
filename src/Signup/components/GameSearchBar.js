@@ -1,5 +1,4 @@
 import React from 'react';
-import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import { connect } from 'react-redux';
 import { updateSearchQuery, getSearchResults, clearSearchResults } from '../../actions/gamesActions';

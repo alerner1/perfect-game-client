@@ -61,7 +61,6 @@ function userReducer(state = defaultState.user, action) {
 function gamesReducer(state = defaultState.games, action) {
   let gameIndex;
   let newList;
-  let gameInArr;
   switch(action.type){
     case "ADD_GAMES":
       return {
@@ -157,6 +156,7 @@ function userPlayedGamesReducer(state = defaultState.userPlayedGames, action) {
       gameIndex = state.indexOf(gameInArr[0]);
       newList = [...state];
       newList[gameIndex]['destroy'] = true;
+      return newList;
     default:
       return state;
   }
