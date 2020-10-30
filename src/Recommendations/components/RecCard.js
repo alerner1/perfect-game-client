@@ -4,11 +4,13 @@ import Card from 'react-bootstrap/Card';
 class RecCard extends React.Component {
   render() {
     return (
-      <Card>
+      <Card style={{cursor: "pointer", height: "100%"}}>
         <Card.Body>
-          <Card.Text>
-            {this.props.game}
-          </Card.Text>
+          <Card.Subtitle>
+            {this.props.game.name}
+          </Card.Subtitle>
+          <Card.Img variant="bottom" src={this.props.game.cover_url}>
+          </Card.Img>
         </Card.Body>
       </Card>
     )

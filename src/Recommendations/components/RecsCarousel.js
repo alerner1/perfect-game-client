@@ -3,16 +3,19 @@ import RecCard from './RecCard';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
+import { connect } from 'react-redux';
 
 class RecsCarousel extends React.Component {
   mapGames = () => {
-    return ['game 1', 'game 2', 'game 3', 'game 4', 'game 5'].map(game => {
-      return (
-        <Col>
-          <RecCard game={game} />
-        </Col>
-      )
+    return this.props.recommendedGames.map(game => {
+      // we'll change this later so you can scroll through multiple rows 
+      if (this.props.recommendedGames.indexOf(game) < 5) {
+        return (
+          <Col>
+            <RecCard game={game} />
+          </Col>
+        )
+      }
     })
   }
 
@@ -25,7 +28,7 @@ class RecsCarousel extends React.Component {
         </Col>
         <Col>
           <Container fluid className="border border-dark rounded p-3">
-            <Row>
+            <Row noGutters>
               {this.mapGames()}
             </Row>
           </Container>
@@ -38,4 +41,10 @@ class RecsCarousel extends React.Component {
   }
 }
 
-export default RecsCarousel;
+const mapStateToProps = state => {
+  return {
+    recommendedGames: state.recommendedGames
+  }
+}
+
+export default connect(mapStateToProps)(RecsCarousel);
