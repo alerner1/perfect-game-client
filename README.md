@@ -29,6 +29,7 @@ THURSDAY:
 
   * do the same thing as for owned list but for wish and saved
   * should probably fix the messiness of game[cover][url] vs game[cover_url] although the workaround is fine for now
+  * oh and probably want to format games you own so you can see their titles and the full cover and stuff
   * make it so you can delete stuff from your owned list as well as other lists
   * need to clear the search on submit
 

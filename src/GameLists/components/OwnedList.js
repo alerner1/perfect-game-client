@@ -71,7 +71,7 @@ class OwnedList extends React.Component {
         {this.state.edit ? 
           <>
             <GameListSearchBar />
-            <GameListSearchResultsList />
+            <GameListSearchResultsList parent={'owned'}/>
           </>
           :
           null

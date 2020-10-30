@@ -14,7 +14,9 @@ const defaultState = {
   },
   userPlayedGames: [],
   playedGames: [],
-  ownedGames: []
+  ownedGames: [],
+  wishlistGames: [],
+  savedRecsGames: []
 };
 
 function userReducer(state = defaultState.user, action) {
@@ -180,12 +182,36 @@ function ownedGamesReducer(state = defaultState.ownedGames, action) {
   }
 }
 
+function wishlistGamesReducer(state = defaultState.wishlistGames, action) {
+  switch(action.type){
+    case "ADD_WISHLIST_GAMES":
+      return action.payload;
+    case "ADD_WISHLIST_GAME":
+      return [...state, action.payload]
+    default:
+      return state;
+  }
+}
+
+function savedRecsGamesReducer(state = defaultState.savedRecsGames, action) {
+  switch(action.type){
+    case "ADD_SAVED_RECS_GAMES":
+      return action.payload;
+    case "ADD_SAVED_RECS_GAME":
+      return [...state, action.payload]
+    default:
+      return state;
+  }
+}
+
 const appReducer = combineReducers({
   user: userReducer,
   games: gamesReducer,
   userPlayedGames: userPlayedGamesReducer,
   playedGames: playedGamesReducer,
-  ownedGames: ownedGamesReducer
+  ownedGames: ownedGamesReducer,
+  wishlistGames: wishlistGamesReducer,
+  savedRecsGames: savedRecsGamesReducer
 });
 
 const rootReducer = (state, action) => {

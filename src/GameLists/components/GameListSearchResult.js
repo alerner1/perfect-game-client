@@ -2,10 +2,19 @@ import React from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { connect } from 'react-redux';
 import { addOwnedGame } from '../../actions/ownedGamesActions';
+import { addSavedRecsGame } from '../../actions/savedRecsGamesActions';
+import { addWishlistGame } from '../../actions/wishlistGamesActions';
 
 class GameListSearchResult extends React.Component {
   handleClick = event => {
-    this.props.addOwnedGame(this.props.result)
+    if (this.props.parent === 'saved') {
+      this.props.addSavedRecsGame(this.props.result)
+    } else if (this.props.parent === 'wish') {
+      this.props.addWishlistGame(this.props.result)
+    } else if (this.props.parent === 'owned') {
+      this.props.addOwnedGame(this.props.result)
+
+    }
   }
 
   mapPlatforms = () => {
@@ -32,7 +41,9 @@ class GameListSearchResult extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addOwnedGame: (gameObj) => dispatch(addOwnedGame(gameObj))
+    addOwnedGame: (gameObj) => dispatch(addOwnedGame(gameObj)),
+    addWishlistGame: (gameObj) => dispatch(addWishlistGame(gameObj)),
+    addSavedRecsGame: (gameObj) => dispatch(addSavedRecsGame(gameObj))
   }
 }
 
