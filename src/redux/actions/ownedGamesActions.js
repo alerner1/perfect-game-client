@@ -14,10 +14,10 @@ export function saveOwnedGames(gamesArray) {
           Authorization: `Bearer ${token}`
         },
         body: JSON.stringify({
-          game_id: game['id'],
+          // game_id: game['id'],
           list: "owned",
           game: {
-            igdb_id: game['id'],
+            igdb_id: game['idgb_id'],
             name: game['name'],
             cover_url: (game['cover'] && game['cover']['url']) || game['cover_url'],
             release_date: game['first_release_date'],

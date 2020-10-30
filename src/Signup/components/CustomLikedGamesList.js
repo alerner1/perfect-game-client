@@ -12,7 +12,7 @@ class CustomLikedGamesList extends React.Component {
 
   mapGames = () => {
     return this.props.displayGames.map(game => {
-      if (game.liked === true) {
+      if (game.liked === 1) {
         return <CustomLikedGame game={game} handleRemove={this.handleRemove} />
       } else {
         return null;
