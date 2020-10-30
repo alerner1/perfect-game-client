@@ -12,6 +12,7 @@ export function getQuickRecommendations() {
     .then(resp => resp.json())
     .then(json => {
       dispatch({ type: 'ADD_RECOMMENDED_GAMES', payload: json })
+      dispatch({ type: 'ADD_SHOW_GAME', payload: json[0] })
     })
   }
 }

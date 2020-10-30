@@ -17,7 +17,8 @@ const defaultState = {
   ownedGames: [],
   wishlistGames: [],
   savedRecsGames: [],
-  recommendedGames: []
+  recommendedGames: [],
+  showGame: {}
 };
 
 function userReducer(state = defaultState.user, action) {
@@ -214,6 +215,17 @@ function recommendedGamesReducer(state = defaultState.recommendedGames, action) 
   }
 }
 
+function showGameReducer(state = defaultState.showGame, action) {
+  switch(action.type){
+    case "ADD_SHOW_GAME":
+      return action.payload;
+    case "CLEAR_GAME":
+      return {};
+    default: 
+      return state;
+  }
+}
+
 const appReducer = combineReducers({
   user: userReducer,
   games: gamesReducer,
@@ -222,7 +234,8 @@ const appReducer = combineReducers({
   ownedGames: ownedGamesReducer,
   wishlistGames: wishlistGamesReducer,
   savedRecsGames: savedRecsGamesReducer,
-  recommendedGames: recommendedGamesReducer
+  recommendedGames: recommendedGamesReducer,
+  showGame: showGameReducer
 });
 
 const rootReducer = (state, action) => {

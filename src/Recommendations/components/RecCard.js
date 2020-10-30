@@ -1,10 +1,16 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
+import { connect } from 'react-redux';
+import { addShowGame } from '../../redux/actions/showGameActions';
 
 class RecCard extends React.Component {
+  handleClick = () => {
+    this.props.addShowGame(this.props.game);
+  }
+
   render() {
     return (
-      <Card style={{cursor: "pointer", height: "100%"}}>
+      <Card onClick={this.handleClick} style={{cursor: "pointer", height: "100%"}}>
         <Card.Body>
           <Card.Subtitle>
             {this.props.game.name}
@@ -17,4 +23,10 @@ class RecCard extends React.Component {
   }
 }
 
-export default RecCard;
+const mapDispatchToProps = dispatch => {
+  return {
+    addShowGame: (gameObj) => dispatch(addShowGame(gameObj))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(RecCard);
