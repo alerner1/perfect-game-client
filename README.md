@@ -34,7 +34,7 @@ THURSDAY:
   * need to clear the search on submit
 
 FRIDAY:
-  * recommendations components tree: recs carousel, gameinfo container (w/ dummy data for now)
+  * DONE recommendations components tree: recs carousel, gameinfo container (w/ dummy data for now)
 
 NEXT WEEK:
   * actually do the algorithm stuff. that should be all you have to do next week. then week 3 can be styling and bug fixes.

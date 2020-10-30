@@ -32,7 +32,7 @@ class WishList extends React.Component {
       <Row noGutters key={row}>
         <Col xs={1}>
         </Col>
-        {thisRow.map(game => <GameCard key={game.id} game={game} />)}
+        {thisRow.map(game => <GameCard key={game.igdb_id} game={game} />)}
         <Col xs={1}>
         </Col>
       </Row>
