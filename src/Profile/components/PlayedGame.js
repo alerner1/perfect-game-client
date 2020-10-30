@@ -5,8 +5,8 @@ import { MdDelete } from 'react-icons/md';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux'
-import { changeUserPlayedGameLikeValue, markUserPlayedGameForDestruction } from '../../actions/userPlayedGamesActions';
-import{ markDisplayGameForDestruction } from '../../actions/gamesActions';
+import { changeUserPlayedGameLikeValue, markUserPlayedGameForDestruction } from '../../redux/actions/userPlayedGamesActions';
+import{ markDisplayGameForDestruction } from '../../redux/actions/gamesActions';
 
 class PlayedGame extends React.Component {
 

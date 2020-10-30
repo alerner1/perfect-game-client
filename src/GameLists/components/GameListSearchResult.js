@@ -1,9 +1,9 @@
 import React from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { connect } from 'react-redux';
-import { addOwnedGame } from '../../actions/ownedGamesActions';
-import { addSavedRecsGame } from '../../actions/savedRecsGamesActions';
-import { addWishlistGame } from '../../actions/wishlistGamesActions';
+import { addOwnedGame } from '../../redux/actions/ownedGamesActions';
+import { addSavedRecsGame } from '../../redux/actions/savedRecsGamesActions';
+import { addWishlistGame } from '../../redux/actions/wishlistGamesActions';
 
 class GameListSearchResult extends React.Component {
   handleClick = event => {

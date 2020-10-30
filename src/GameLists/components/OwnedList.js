@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/Container';
 import GameCard from './GameCard';
 import GameListSearchBar from './GameListSearchBar';
 import GameListSearchResultsList from './GameListSearchResultsList';
-import { saveOwnedGames } from '../../actions/ownedGamesActions';
+import { saveOwnedGames } from '../../redux/actions/ownedGamesActions';
 
 class OwnedList extends React.Component {
   state = {

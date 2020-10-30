@@ -2,7 +2,7 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button';
-import { loginUser } from '../actions/userActions';
+import { loginUser } from '../redux/actions/userActions';
 import { Redirect, withRouter } from 'react-router-dom';
 
 class LoginForm extends React.Component {

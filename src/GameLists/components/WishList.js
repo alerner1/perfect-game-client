@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/Container';
 import GameCard from './GameCard';
 import GameListSearchBar from './GameListSearchBar';
 import GameListSearchResultsList from './GameListSearchResultsList';
-import { saveWishlistGames } from '../../actions/wishlistGamesActions';
+import { saveWishlistGames } from '../../redux/actions/wishlistGamesActions';
 
 class WishList extends React.Component {
   state = {

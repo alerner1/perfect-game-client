@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import { connect } from 'react-redux';
-import { updateSearchQuery, getSearchResults, clearSearchResults } from '../../actions/gamesActions';
+import { updateSearchQuery, getSearchResults, clearSearchResults } from '../../redux/actions/gamesActions';
 import Button from 'react-bootstrap/Button';
 
 class GameSearchBar extends React.Component {

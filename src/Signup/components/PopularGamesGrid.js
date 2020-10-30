@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getPopularGames, clearGames, likeGame, unlikeGame, updateGameLikeValue } from '../../actions/gamesActions';
+import { getPopularGames, clearGames, likeGame, unlikeGame, updateGameLikeValue } from '../../redux/actions/gamesActions';
 import PopularGame from './PopularGame';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';

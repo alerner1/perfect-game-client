@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getUser, setUser } from './actions/userActions';
+import { getUser, setUser } from './redux/actions/userActions';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import NavMenuContainer from './NavMenu/containers/NavMenuContainer';
 import LoginForm from './Login/LoginForm';
 import SignupContainer from './Signup/containers/SignupContainer';
 import ProfileContainer from './Profile/containers/ProfileContainer';
 import GameListContainer from './GameLists/containers/GameListContainer';
+import RecommendationsContainer from './Recommendations/containers/RecommendationsContainer';
 
 class App extends React.Component {
   componentDidMount() {
@@ -32,6 +33,12 @@ class App extends React.Component {
           <Route path="/game_lists/owned_games" render={() => <GameListContainer list="owned" />} />
           <Route path="/game_lists/wishlist" render={() => <GameListContainer list="wish" />} />
           <Route path="/game_lists/saved_recommendations" render={() => <GameListContainer list="saved" />} />
+
+          {/* should also run the recommendations algorithm here.
+          involves a fetch request to backend, then save results in state
+          then put them in display games.
+          quick recommendations should display a loading screen while that's going on */}
+          <Route path="/quick_recommendations" render={() => <RecommendationsContainer />} />
         </Switch>
       </div>
     )

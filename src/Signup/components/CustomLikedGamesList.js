@@ -2,7 +2,7 @@ import React from 'react';
 import CustomLikedGame from './CustomLikedGame';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { connect } from 'react-redux';
-import { unlikeGame } from '../../actions/gamesActions';
+import { unlikeGame } from '../../redux/actions/gamesActions';
 import Card from 'react-bootstrap/Card';
 
 class CustomLikedGamesList extends React.Component {

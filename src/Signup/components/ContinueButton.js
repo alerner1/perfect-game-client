@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
-import { incrementSignupStep, getUser } from '../../actions/userActions';
+import { incrementSignupStep, getUser } from '../../redux/actions/userActions';
 
 class ContinueButton extends React.Component {
   handleClick = () => {

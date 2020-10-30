@@ -2,8 +2,8 @@ import React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { connect } from 'react-redux';
-import { resetUser, resetSignupStep, userLogout } from '../../actions/userActions';
-import { resetGames } from '../../actions/gamesActions';
+import { resetUser, resetSignupStep, userLogout } from '../../redux/actions/userActions';
+import { resetGames } from '../../redux/actions/gamesActions';
 import Navbar from 'react-bootstrap/Navbar';
 import { withRouter } from 'react-router-dom';
 
@@ -21,6 +21,9 @@ class NavMenuLoggedIn extends React.Component {
       break;
     case '2.3':
       this.props.history.push('/game_lists/saved_recommendations');
+      break;
+    case '3':
+      this.props.history.push('/quick_recommendations');
       break;
     case '5':
       localStorage.removeItem("token");

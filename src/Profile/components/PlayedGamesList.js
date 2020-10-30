@@ -1,12 +1,12 @@
 import React from 'react';
 import PlayedGame from './PlayedGame';
 import { connect } from 'react-redux';
-import { getUser } from '../../actions/userActions';
+import { getUser } from '../../redux/actions/userActions';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import { changeUserPlayedGameLikeValue, saveUserPlayedGame } from '../../actions/userPlayedGamesActions';
-import { resetGames, addGames, updateGameLikeValue } from '../../actions/gamesActions';
+import { changeUserPlayedGameLikeValue, saveUserPlayedGame } from '../../redux/actions/userPlayedGamesActions';
+import { resetGames, addGames, updateGameLikeValue } from '../../redux/actions/gamesActions';
 import GameSearchBar from '../../Signup/components/GameSearchBar';
 import SearchResultsList from '../../Signup/components/SearchResultsList';
 
