@@ -9,7 +9,7 @@ class RecsCarousel extends React.Component {
   mapGames = () => {
     return this.props.recommendedGames.map(game => {
       // we'll change this later so you can scroll through multiple rows 
-      if (this.props.recommendedGames.indexOf(game) > 4) {
+      if (this.props.recommendedGames.indexOf(game) < 5) {
         return (
           <Col>
             <RecCard game={game} />
