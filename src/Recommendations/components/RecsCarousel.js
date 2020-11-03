@@ -3,20 +3,30 @@ import RecCard from './RecCard';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Spinner from 'react-bootstrap/Spinner'
 import { connect } from 'react-redux';
 
 class RecsCarousel extends React.Component {
   mapGames = () => {
-    return this.props.recommendedGames.map(game => {
+    if (this.props.requesting === true) {
+      return (
+        <>
+          <Spinner animation="border" />
+          Getting recommendations...
+        </>
+      )
+    } else {
+      return this.props.recommendedGames.map(game => {
       // we'll change this later so you can scroll through multiple rows 
-      if (this.props.recommendedGames.indexOf(game) < 5) {
-        return (
-          <Col>
-            <RecCard game={game} />
-          </Col>
-        )
-      }
-    })
+        if (this.props.recommendedGames.indexOf(game) < 5) {
+          return (
+            <Col>
+              <RecCard game={game} />
+            </Col>
+          )
+        }
+      })
+    }
   }
 
   render(){
@@ -43,7 +53,8 @@ class RecsCarousel extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    recommendedGames: state.recommendedGames
+    recommendedGames: state.recommendedGames.games,
+    requesting: state.recommendedGames.requesting
   }
 }
 

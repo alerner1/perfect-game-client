@@ -1,18 +1,17 @@
 TODOS
 
-* right now when you click previous to go back to the popular games page it resets everything. so either make it that you can't go back or that you can and it still knows what you picked already and updates accordingly if you deselect something etc
+* DONE right now when you click previous to go back to the popular games page it resets everything. so either make it that you can't go back or that you can and it still knows what you picked already and updates accordingly if you deselect something etc
   * CHANGE: removed previous button
 
 * make it so you can't select a search result twice when you add custom liked games
 
 * allow user to edit email password and steam information (while retaining uniqueness etc)
 
-* make it so state knows when it's doing fetch requesty stuff and front end says loading when it's still working on that for profile
+* DONE make it so state knows when it's doing fetch requesty stuff and front end says loading when it's still working on that for profile
 
 * could put in a cancel button for saving changes to profile played games list maybe
 
-* make it so when you add to your played games list it doesn't automatically like it for you
- * DONE
+* DONE make it so when you add to your played games list it doesn't automatically like it for you
 
 WEDNESDAY:
   * DONE figure out design for search results

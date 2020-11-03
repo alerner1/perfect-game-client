@@ -19,7 +19,7 @@ class GameListSearchResultsList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    searchResults: state.games.searchResults
+    searchResults: state.games.searchResults.sort((a, b) => (a.name > b.name) ? 1 : -1)
   }
 }
 

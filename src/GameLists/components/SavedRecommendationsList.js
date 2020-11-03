@@ -85,7 +85,7 @@ class SavedRecommendationsList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    savedRecsGames: state.savedRecsGames
+    savedRecsGames: state.savedRecsGames.sort((a, b) => (a.name > b.name) ? 1 : -1)
   }
 }
 

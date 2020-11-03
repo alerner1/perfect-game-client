@@ -85,7 +85,7 @@ class WishList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    wishlistGames: state.wishlistGames
+    wishlistGames: state.wishlistGames.sort((a, b) => (a.name > b.name) ? 1 : -1)
   }
 }
 

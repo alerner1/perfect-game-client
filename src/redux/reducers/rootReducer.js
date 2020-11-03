@@ -17,7 +17,10 @@ const defaultState = {
   ownedGames: [],
   wishlistGames: [],
   savedRecsGames: [],
-  recommendedGames: [],
+  recommendedGames: {
+    games: [],
+    requesting: false
+  },
   showGame: {}
 };
 
@@ -209,7 +212,15 @@ function savedRecsGamesReducer(state = defaultState.savedRecsGames, action) {
 function recommendedGamesReducer(state = defaultState.recommendedGames, action) {
   switch(action.type){
     case "ADD_RECOMMENDED_GAMES":
-      return action.payload;
+      return {
+        games: action.payload,
+        requesting: false
+      };
+    case "REQUESTING_RECS":
+      return {
+        ...defaultState.recommendedGames,
+        requesting: true
+      };
     default:
       return state;
   }

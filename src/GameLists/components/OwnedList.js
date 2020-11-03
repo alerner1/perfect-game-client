@@ -85,7 +85,7 @@ class OwnedList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    ownedGames: state.ownedGames
+    ownedGames: state.ownedGames.sort((a, b) => (a.name > b.name) ? 1 : -1)
   }
 }
 
