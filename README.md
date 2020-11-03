@@ -46,6 +46,6 @@ MONDAY:
 TUESDAY: 
   * DONE get algorithm to connect to front end
   * DONE bug fixes
+  * fix carousel so it shows appropriate items and doesn't auto scroll
   * build out game info page
-  * make buttons for user to scroll through results
   and then i think we've reached mvp!

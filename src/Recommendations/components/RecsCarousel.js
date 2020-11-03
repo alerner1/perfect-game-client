@@ -33,7 +33,7 @@ class RecsCarousel extends React.Component {
   render(){
     return (
       <>
-      <Carousel>
+      <Carousel interval={null}>
         <Carousel.Item>
           <Row>
             <Col xs={1}>
