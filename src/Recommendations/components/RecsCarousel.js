@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Spinner from 'react-bootstrap/Spinner'
+import Carousel from 'react-bootstrap/Carousel'
 import { connect } from 'react-redux';
 
 class RecsCarousel extends React.Component {
@@ -32,20 +33,40 @@ class RecsCarousel extends React.Component {
   render(){
     return (
       <>
-      <Row>
-        <Col xs={1}>
-          {/* this is space for buttons */}
-        </Col>
-        <Col>
-          <Container fluid className="border border-dark rounded p-3">
-            <Row noGutters>
-              {this.mapGames()}
-            </Row>
-          </Container>
-        </Col>
-        <Col xs={1}>
-        </Col>
-      </Row>
+      <Carousel>
+        <Carousel.Item>
+          <Row>
+            <Col xs={1}>
+              {/* this is space for buttons */}
+            </Col>
+            <Col>
+              <Container fluid className="border border-dark rounded p-3">
+                <Row noGutters>
+                  {this.mapGames()}
+                </Row>
+              </Container>
+            </Col>
+            <Col xs={1}>
+            </Col>
+          </Row>
+        </Carousel.Item>
+        <Carousel.Item>
+        <Row>
+            <Col xs={1}>
+              {/* this is space for buttons */}
+            </Col>
+            <Col>
+              <Container fluid className="border border-dark rounded p-3">
+                <Row noGutters>
+                  {this.mapGames()}
+                </Row>
+              </Container>
+            </Col>
+            <Col xs={1}>
+            </Col>
+          </Row>
+        </Carousel.Item>
+      </Carousel>
       </>
     )
   }
