@@ -46,7 +46,7 @@ class LoginForm extends React.Component {
         <p>New here? <a onClick={this.clickHandler} href="/signup">Create Account.</a></p>
       </Form>
       :
-      <Redirect to="/welcome" />
+      <Redirect to="/profile" />
     )
   }
 }

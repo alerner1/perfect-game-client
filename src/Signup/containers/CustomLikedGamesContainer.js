@@ -29,7 +29,7 @@ class CustomLikedGamesContainer extends React.Component {
         </Row>
         <Row>
           <Col>
-            <PreviousButton /> 
+            {/* <PreviousButton />  */}
           </Col>
           <Col>
             <ContinueButton />
