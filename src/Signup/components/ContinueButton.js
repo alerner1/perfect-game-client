@@ -25,7 +25,7 @@ class ContinueButton extends React.Component {
           game: {
             igdb_id: game['igdb_id'],
             name: game['name'],
-            cover_url: game['cover']['url'],
+            cover_url: game['cover_url'],
             release_date: game['first_release_date'],
             platforms: game['platforms']
           }

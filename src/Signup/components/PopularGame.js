@@ -22,13 +22,13 @@ class PopularGame extends React.Component {
           backgroundImage: `
             linear-gradient(rgba(0, 0, 0, ${this.state.liked ? '0.5' : '0.0'}), 
             rgba(0, 0, 0, ${this.state.liked ? '0.5' : '0.0'})), 
-            url(${this.props.game['cover']['url']})
+            url(${this.props.game['cover_url']})
           ` }}>
           <Card.Img 
             style={{cursor: 'pointer', opacity: 0.0}} 
             onClick={this.handleClick} 
             variant="bottom" 
-            src={this.props.game['cover']['url']} />
+            src={this.props.game['cover_url']} />
         </Card>
       </Col>
     )
