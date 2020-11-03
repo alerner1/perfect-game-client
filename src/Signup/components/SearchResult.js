@@ -6,7 +6,12 @@ import { addGame, updateGameLikeValue } from '../../redux/actions/gamesActions';
 class SearchResult extends React.Component {
   handleClick = event => {
     this.props.addGame(this.props.result);
-    this.props.updateGameLikeValue(this.props.result, 1);
+
+    if (this.props.parent !== 'profile') {
+      this.props.updateGameLikeValue(this.props.result, 1);
+    } else {
+      this.props.updateGameLikeValue(this.props.result, 0)
+    }
   }
 
   mapPlatforms = () => {

@@ -9,6 +9,7 @@ import GameCard from './GameCard';
 import GameListSearchBar from './GameListSearchBar';
 import GameListSearchResultsList from './GameListSearchResultsList';
 import { saveSavedRecsGames } from '../../redux/actions/savedRecsGamesActions';
+import { clearSearchResults } from '../../redux/actions/gamesActions';
 
 class SavedRecommendationsList extends React.Component {
   state = {
@@ -18,7 +19,9 @@ class SavedRecommendationsList extends React.Component {
   toggleEdit = () => {
     this.setState(prev => ({ edit: !prev.edit }), () => {
       if (this.state.edit === false) {
-        this.props.saveSavedRecsGames(this.props.savedRecsGames)
+        this.props.saveSavedRecsGames(this.props.savedRecsGames);
+      } else {
+        this.props.clearSearchResults();
       }
     })
   }
@@ -88,7 +91,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    saveSavedRecsGames: (gamesArray) => dispatch(saveSavedRecsGames(gamesArray))
+    saveSavedRecsGames: (gamesArray) => dispatch(saveSavedRecsGames(gamesArray)),
+    clearSearchResults: () => dispatch(clearSearchResults())
   }
 }
 

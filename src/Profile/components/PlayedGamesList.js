@@ -6,7 +6,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { changeUserPlayedGameLikeValue, saveUserPlayedGame } from '../../redux/actions/userPlayedGamesActions';
-import { resetGames, addGames, updateGameLikeValue } from '../../redux/actions/gamesActions';
+import { resetGames, addGames, updateGameLikeValue, clearSearchResults } from '../../redux/actions/gamesActions';
 import GameSearchBar from '../../Signup/components/GameSearchBar';
 import SearchResultsList from '../../Signup/components/SearchResultsList';
 
@@ -91,7 +91,9 @@ class PlayedGamesList extends React.Component {
           }
         }
         this.props.getUser()
-      } 
+      } else {
+        this.props.clearSearchResults();
+      }
     })
   }
 
@@ -113,7 +115,7 @@ class PlayedGamesList extends React.Component {
           <>
             <h3 className="text-center">Add Another Game</h3>
             <GameSearchBar />
-            <SearchResultsList />
+            <SearchResultsList parent='profile' />
           </>
           :
           null
@@ -127,7 +129,7 @@ const mapStateToProps = state => {
   return {
     playedGames: state.playedGames,
     userPlayedGames: state.userPlayedGames,
-    displayGames: state.games.displayGames
+    displayGames: state.games.displayGames.sort((a, b) => (a.name > b.name) ? 1 : -1)
   }
 }
 
@@ -138,7 +140,8 @@ const mapDispatchToProps = dispatch => {
     saveUserPlayedGame: (gameObj) => dispatch(saveUserPlayedGame(gameObj)),
     resetGames: () => dispatch(resetGames()),
     addGames: (gamesArray) => dispatch(addGames(gamesArray)),
-    updateGameLikeValue: (gameObj, liked) => dispatch(updateGameLikeValue(gameObj, liked))
+    updateGameLikeValue: (gameObj, liked) => dispatch(updateGameLikeValue(gameObj, liked)),
+    clearSearchResults: () => dispatch(clearSearchResults())
   }
 }
 

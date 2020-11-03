@@ -12,6 +12,7 @@ TODOS
 * could put in a cancel button for saving changes to profile played games list maybe
 
 * make it so when you add to your played games list it doesn't automatically like it for you
+ * DONE
 
 WEDNESDAY:
   * DONE figure out design for search results
@@ -32,7 +33,8 @@ THURSDAY:
   * should probably fix the messiness of game[cover][url] vs game[cover_url] although the workaround is fine for now
   * oh and probably want to format games you own so you can see their titles and the full cover and stuff
   * make it so you can delete stuff from your owned list as well as other lists
-  * need to clear the search on submit
+  * DONE need to clear the search on submit
+    
 
 FRIDAY:
   * DONE recommendations components tree: recs carousel, gameinfo container (w/ dummy data for now)
