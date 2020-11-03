@@ -39,4 +39,13 @@ FRIDAY:
   * DONE recommendations components tree: recs carousel, gameinfo container (w/ dummy data for now)
 
 NEXT WEEK:
-  * actually do the algorithm stuff. that should be all you have to do next week. then week 3 can be styling and bug fixes.
+
+MONDAY: 
+  * DONE build and implement algorithm
+
+TUESDAY: 
+  * DONE get algorithm to connect to front end
+  * DONE bug fixes
+  * build out game info page
+  * make buttons for user to scroll through results
+  and then i think we've reached mvp!
