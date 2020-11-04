@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 
 class GameInfoContainer extends React.Component {
   render(){
-    return (
+    return ( 
       <Container fluid>
         <GameInfo />
       </Container>

@@ -1,5 +1,6 @@
 export function getQuickRecommendations() {
   return (dispatch) => {
+    dispatch({ type: 'CLEAR_GAME' })
     dispatch({ type: 'REQUESTING_RECS' })
     const token = localStorage.getItem("token")
     fetch('http://localhost:3000/api/v1/games/quick_recommendations', {

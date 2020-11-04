@@ -11,11 +11,11 @@ class RecCard extends React.Component {
   render() {
     return (
       <Card onClick={this.handleClick} style={{cursor: "pointer", height: "100%"}}>
-        <Card.Body>
+        <Card.Body className="h-100 d-flex flex-column">
           <Card.Subtitle>
             {this.props.game.name}
           </Card.Subtitle>
-          <Card.Img variant="bottom" src={this.props.game.cover_url}>
+          <Card.Img variant="bottom" className="mt-auto" src={this.props.game.cover_url}>
           </Card.Img>
         </Card.Body>
       </Card>
