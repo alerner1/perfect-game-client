@@ -32,7 +32,7 @@ class ContinueButton extends React.Component {
         })
       })
       .then(resp => resp.json())
-      .then(this.props.getUser())
+      .then(() => this.props.getUser())
     }   
   }
 

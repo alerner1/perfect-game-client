@@ -26,9 +26,8 @@ class PlayedGamesList extends React.Component {
 
   componentDidUpdate(prevProps) {
     // maybe this is a good time to move everything into displayGames? like reset and then do that
-    if (prevProps.playedGames.length === 0 && prevProps.playedGames !== this.props.playedGames) {
+    if (prevProps.playedGames !== this.props.playedGames) {
       this.props.resetGames();
-      console.log('reset')
       const toDisplay = [...this.props.playedGames];
       for (let game of toDisplay) {
         game.liked = this.props.userPlayedGames.find(userPlayedGame => { return userPlayedGame.game_id === game.id }).liked
@@ -66,7 +65,7 @@ class PlayedGamesList extends React.Component {
                 game_id: game['igdb_id'],
                 liked: game['liked'],
                 game: {
-                  igdb_id: game['idgb_id'],
+                  igdb_id: game['igdb_id'],
                   name: game['name'],
                   cover_url: game['cover_url'],
                   release_date: game['first_release_date'],
