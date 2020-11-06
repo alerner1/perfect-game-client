@@ -38,8 +38,8 @@ class NavMenuLoggedIn extends React.Component {
   render() {
     return (
       <>
-        <Navbar expand="lg">
-          <Navbar.Brand>The Perfect Game</Navbar.Brand>
+        <Navbar variant="dark" expand="lg">
+          <Navbar.Brand id="logo" className='font-weight-bold'><h3 className="my-auto">The Perfect Game</h3></Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav defaultActiveKey="1" onSelect={this.handleSelect} className="mr-auto">

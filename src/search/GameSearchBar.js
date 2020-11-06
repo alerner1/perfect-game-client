@@ -1,4 +1,5 @@
 import React from 'react';
+import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import { connect } from 'react-redux';
@@ -19,12 +20,20 @@ class GameSearchBar extends React.Component {
 
   render(){
     return(
-      <Form inline onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
         <Form.Group controlId="formBasicSearch">
-          <Form.Label>Search Games: </Form.Label>
-          <Form.Control name="search" onChange={this.handleChange} type="text" value={this.props.search} placeholder="Search for a game you like" />
+          <Row>
+            <Col>
+              <Form.Label>Search Games: </Form.Label>
+            </Col>
+            <Col>
+              <Form.Control name="search" onChange={this.handleChange} type="text" value={this.props.search} placeholder="Search for a game you like" />
+            </Col>
+            <Col>
+              <Button type="submit" className="float-right">Search</Button>
+            </Col>
+          </Row>
         </Form.Group>
-        <Button type="submit">Search</Button>
       </Form>
     )
   }

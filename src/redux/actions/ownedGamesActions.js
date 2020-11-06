@@ -17,7 +17,7 @@ export function saveOwnedGames(gamesArray) {
           // game_id: game['id'],
           list: "owned",
           game: {
-            igdb_id: game['idgb_id'],
+            igdb_id: game['igdb_id'],
             name: game['name'],
             cover_url: (game['cover'] && game['cover']['url']) || game['cover_url'],
             release_date: game['first_release_date'],

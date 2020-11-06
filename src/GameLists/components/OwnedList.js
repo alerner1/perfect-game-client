@@ -62,8 +62,16 @@ class OwnedList extends React.Component {
         <Card>
           <Card.Body>
             <Card.Title className="text-center">
-              Games You Own
-              <Button className="ml-5" onClick={this.toggleEdit}>{this.state.edit ? 'Save' : 'Edit'}</Button>
+             <Row>
+                <Col xs={2}>
+                </Col>
+                <Col>
+                  Games You Own
+                </Col>
+                <Col xs={2}>
+                  <Button className="ml-5" onClick={this.toggleEdit}>{this.state.edit ? 'Save' : 'Edit'}</Button>
+                </Col>
+              </Row>
             </Card.Title>
             <Container fluid>
               {this.renderGames()}

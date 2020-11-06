@@ -16,9 +16,9 @@ class PlayedGame extends React.Component {
 
   likeInfo = () => {
     if (this.props.liked > 0) {
-      return <FaThumbsUp />
+      return <div className="text-blue"><FaThumbsUp /></div>
     } else if (this.props.liked < 0) {
-      return <FaThumbsDown />
+      return <div className="text-blue"><FaThumbsDown /></div>
     }    
   }
 
@@ -77,7 +77,7 @@ class PlayedGame extends React.Component {
       <>
         {this.whichActive()}
         
-        <Button onClick={this.handleDestroy}>
+        <Button variant="danger" className="ml-1" onClick={this.handleDestroy}>
           <MdDelete />
         </Button>
       </>

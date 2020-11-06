@@ -46,6 +46,21 @@ MONDAY:
 TUESDAY: 
   * DONE get algorithm to connect to front end
   * DONE bug fixes
-  * fix carousel so it shows appropriate items and doesn't auto scroll
-  * build out game info page
+  * DONE fix carousel so it shows appropriate items and doesn't auto scroll
+  * DONE build out game info page
   and then i think we've reached mvp!
+
+THURSDAY:
+
+  * styling
+  * fix bug where owned games don't persist
+
+  // add another game becomes a button
+  // on click, pull up a modal with the search bar 
+  // on search, turn results into scrollable list
+
+  // on click, remove from results list
+  // click done to exit modal
+  // adjust likes or remove accordingly
+
+  // when viewing any game lists, clicking a game brings up its info at the bottom

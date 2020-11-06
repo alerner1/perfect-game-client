@@ -2,3 +2,53 @@
 .carousel-control-prev /*, .carousel-indicators */ {
     filter: invert(100%);
 }
+
+.text-white {
+  color: #FFFFFF !important;
+}
+
+.text-purple {
+  color: #64113F !important;
+}
+
+.text-blue {
+  color: #4D7EA8 !important;
+}
+
+#logo {
+  font-family: 'Bangers' !important;
+}
+
+nav, .dropdown-menu {
+  background-color: #64113F !important;
+}
+
+.dropdown-item {
+  color: #FFFFFF !important;
+}
+
+.dropdown-item:hover {
+  background-color: #460C2C !important;
+}
+
+.btn-primary {
+  background-color: #64113F !important;
+  border-color: #460C2C !important;
+}
+
+.btn-primary:focus {
+  box-shadow: 0 0 0 3px #C02178 !important;
+}
+
+.btn-primary.active {
+  background-color: #460C2C !important;
+}
+
+.btn-danger {
+  background-color: #DB5461 !important;
+  border-color: #D43545 !important;
+}
+
+.btn-danger:focus {
+  box-shadow: 0 0 0 3px #EDABB1 !important;
+}

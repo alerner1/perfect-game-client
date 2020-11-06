@@ -105,14 +105,14 @@ class PlayedGamesList extends React.Component {
               Games You've Played
               <Button className="ml-5" onClick={this.toggleEdit}>{this.state.edit ? 'Save' : 'Edit'}</Button>
             </Card.Title>
-            <ListGroup>
+            <ListGroup style={{height: '50vh', overflow: 'auto'}}>
               {this.renderPlayedGames()}
             </ListGroup>
           </Card.Body>
         </Card>
         {this.state.edit ? 
           <>
-            <h3 className="text-center">Add Another Game</h3>
+            <h3 className="text-center mt-3">Add Another Game</h3>
             <GameSearchBar />
             <SearchResultsList parent='profile' />
           </>
