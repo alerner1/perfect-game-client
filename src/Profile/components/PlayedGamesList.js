@@ -9,6 +9,7 @@ import { changeUserPlayedGameLikeValue, saveUserPlayedGame } from '../../redux/a
 import { resetGames, addGames, updateGameLikeValue, clearSearchResults } from '../../redux/actions/gamesActions';
 import GameSearchBar from '../../Signup/components/GameSearchBar';
 import SearchResultsList from '../../Signup/components/SearchResultsList';
+import Container from 'react-bootstrap/Container';
 
 class PlayedGamesList extends React.Component {
   state = {
@@ -99,17 +100,17 @@ class PlayedGamesList extends React.Component {
   render() {
     return (
       <>
-        <Card>
-          <Card.Body>
-            <Card.Title className="text-center">
+        <Container className="mx-auto" style={{width: '75vw'}}>
+          
+            <h3 className="text-center">
               Games You've Played
               <Button className="ml-5" onClick={this.toggleEdit}>{this.state.edit ? 'Save' : 'Edit'}</Button>
-            </Card.Title>
+            </h3>
             <ListGroup style={{height: '50vh', overflow: 'auto'}}>
               {this.renderPlayedGames()}
             </ListGroup>
-          </Card.Body>
-        </Card>
+          
+        </Container>
         {this.state.edit ? 
           <>
             <h3 className="text-center mt-3">Add Another Game</h3>

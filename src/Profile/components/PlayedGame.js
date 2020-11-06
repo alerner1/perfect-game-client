@@ -7,6 +7,9 @@ import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux'
 import { changeUserPlayedGameLikeValue, markUserPlayedGameForDestruction } from '../../redux/actions/userPlayedGamesActions';
 import{ markDisplayGameForDestruction } from '../../redux/actions/gamesActions';
+import Image from 'react-bootstrap/Image';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 class PlayedGame extends React.Component {
 
@@ -16,9 +19,9 @@ class PlayedGame extends React.Component {
 
   likeInfo = () => {
     if (this.props.liked > 0) {
-      return <div className="text-blue"><FaThumbsUp /></div>
+      return <h4 className="text-blue"><FaThumbsUp /></h4>
     } else if (this.props.liked < 0) {
-      return <div className="text-blue"><FaThumbsDown /></div>
+      return <h4 className="text-blue"><FaThumbsDown /></h4>
     }    
   }
 
@@ -90,19 +93,29 @@ class PlayedGame extends React.Component {
         null
 
         :
-
-        <ListGroup.Item className="d-flex justify-content-between">
-        {this.props.game.name}
-        <div>
-          {this.props.edit ? 
-            this.editButtons()
-          :
-            this.likeInfo()
+            <ListGroup.Item className="py-0">
+            <Row>
+              <Col xs={2}>
+                <Image className="p-0" src={this.props.game.cover_url} style={{height: '20vh'}} thumbnail fluid />
+              </Col>
+              <Col>
+                <Row>
+                  <h4>{this.props.game.name} ({this.props.game.release_date})</h4>
+                </Row>
+                <Row>
+                  <p>{this.props.game.summary.split(' ').slice(0, 32).join(' ') + '...'}</p>
+                </Row>
+              </Col>
+              <Col xs={3} className="d-flex flex-row justify-content-center h-50">
+                {this.props.edit ? 
+                  this.editButtons()
+                :
+                  this.likeInfo()
+                }
+              </Col>
+            </Row>
             
-          }
-        </div>
-        
-      </ListGroup.Item>
+          </ListGroup.Item>
     )
   }
 }

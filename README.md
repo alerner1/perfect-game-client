@@ -63,4 +63,8 @@ THURSDAY:
   // click done to exit modal
   // adjust likes or remove accordingly
 
-  // when viewing any game lists, clicking a game brings up its info at the bottom
+  // when viewing any game lists, clicking a game brings up its info at the bottom or as a modal
+  // MAKE THE GAME NAME A LINK DUMMY
+  // also the like/dislike buttons should probs be blue
+
+  // do something about the email in the profile being real ugly
