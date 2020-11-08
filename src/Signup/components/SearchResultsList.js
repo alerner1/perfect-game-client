@@ -5,7 +5,19 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 class SearchResultsList extends React.Component {
   mapSearchResults = () => {
-    return this.props.searchResults.map(result => { return <SearchResult key={result['id']} result={result} parent={this.props.parent} />})
+    const filteredResults = this.props.searchResults.filter(game => {
+      let found = false;
+      for (let displayGame of this.props.displayGames) {
+        if (displayGame.name === game.name) {
+          found = true;
+        }
+      }
+      if (found === false) {
+        return game
+      }
+    })
+
+    return filteredResults.map(result => { return <SearchResult key={result['igdb_id']} result={result} parent={this.props.parent} />})
   }
 
   render() {
@@ -19,7 +31,8 @@ class SearchResultsList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    searchResults: state.games.searchResults.sort((a, b) => (a.name > b.name) ? 1 : -1)
+    searchResults: state.games.searchResults.sort((a, b) => (a.name > b.name) ? 1 : -1),
+    displayGames: state.games.displayGames
   }
 }
 
