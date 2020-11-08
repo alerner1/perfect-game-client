@@ -39,36 +39,9 @@ class OwnedList extends React.Component {
     })
   }
 
-  mapRow = row => {
-    const thisRow = this.props.ownedGames.filter(game => {
-      return this.props.ownedGames.indexOf(game) >= row * 5 && this.props.ownedGames.indexOf(game) < (row + 1) * 5;
-    });
-
-    return (
-      <Row noGutters key={row}>
-        <Col xs={1}>
-        </Col>
-        {thisRow.map(game => <GameCard key={game.igdb_id} game={game} />)}
-        <Col xs={1}>
-        </Col>
-      </Row>
-    )
-  }
-
   renderGames = () => {
-    // let numOfRows = parseInt(this.props.ownedGames.length / 5, 10);
-    // const allGames = [];
-
-    // if (this.props.ownedGames.length % 5 !== 0) { numOfRows++; }
-
-    // for (let i = 0; i < numOfRows; i++) {
-    //   allGames.push(this.mapRow(i));
-    // }
-
-    // return allGames;
-
     return this.props.ownedGames.map(game => {
-      return <PlayedGame key={game.id} game={game} liked={game.liked} updateLikes={this.updateLikes} edit={this.state.edit} />
+      return <GameCard key={game.id} game={game} />
     })
   }
 
@@ -94,15 +67,7 @@ class OwnedList extends React.Component {
               {this.renderGames()}
             </ListGroup>
           
-        </Container>
-        {/* {this.state.edit ? 
-          <>
-            <GameListSearchBar />
-            <GameListSearchResultsList parent={'owned'}/>
-          </>
-          :
-          null }*/}
-        
+        </Container>        
       </>
     )
   }

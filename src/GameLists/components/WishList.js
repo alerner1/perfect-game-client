@@ -10,10 +10,14 @@ import GameListSearchBar from './GameListSearchBar';
 import GameListSearchResultsList from './GameListSearchResultsList';
 import { saveWishlistGames } from '../../redux/actions/wishlistGamesActions';
 import { clearSearchResults } from '../../redux/actions/gamesActions';
+import ListGroup from 'react-bootstrap/ListGroup';
+import AddGameModal from '../../Profile/components/AddGameModal';
+import PlayedGame from '../../Profile/components/PlayedGame';
 
 class WishList extends React.Component {
   state = {
-    edit: false
+    edit: false,
+    showModal: false
   }
 
   toggleEdit = () => {
@@ -26,66 +30,44 @@ class WishList extends React.Component {
     })
   }
 
-  mapRow = row => {
-    const thisRow = this.props.wishlistGames.filter(game => {
-      return this.props.wishlistGames.indexOf(game) >= row * 5 && this.props.wishlistGames.indexOf(game) < (row + 1) * 5;
-    });
+  showModal = () => {
+    this.props.clearSearchResults();
+    this.setState({showModal: true})
+  }
 
-    return (
-      <Row noGutters key={row}>
-        <Col xs={1}>
-        </Col>
-        {thisRow.map(game => <GameCard key={game.igdb_id} game={game} />)}
-        <Col xs={1}>
-        </Col>
-      </Row>
-    )
+  closeModal = () => {
+    this.setState({showModal: false})
   }
 
   renderGames = () => {
-    let numOfRows = parseInt(this.props.wishlistGames.length / 5, 10);
-    const allGames = [];
-
-    if (this.props.wishlistGames.length % 5 !== 0) { numOfRows++; }
-
-    for (let i = 0; i < numOfRows; i++) {
-      allGames.push(this.mapRow(i));
-    }
-
-    return allGames;
+    return this.props.wishlistGames.map(game => {
+      return <GameCard key={game.id} game={game} />
+    })
   }
 
 
   render() {
     return (
       <>
-        <Card>
-          <Card.Body>
-            <Card.Title className="text-center">
-              <Row>
-                <Col xs={2}>
-                </Col>
-                <Col>
+        <Container className="mt-3 mx-auto" style={{width: '75vw'}}>
+            <AddGameModal showProp={this.state.showModal} closeModal={this.closeModal} parent="owned" />
+            <Row>
+              <Col xs={2}></Col>
+              <Col>
+                <h3 className="text-center">
                   Your Wish List
-                </Col>
-                <Col xs={2}>
-                  <Button className="ml-5" onClick={this.toggleEdit}>{this.state.edit ? 'Save' : 'Edit'}</Button>
-                </Col>
-              </Row>
-            </Card.Title>
-            <Container fluid>
+                </h3>
+              </Col>
+              <Col xs={3}>
+                <Button className="ml-3 float-right" onClick={this.toggleEdit}>{this.state.edit ? 'Save' : 'Edit'}</Button>
+                {this.state.edit ? <Button onClick={this.showModal} className="float-right">Add Game</Button> : null }
+              </Col>
+            </Row>
+            <ListGroup className="mt-3" style={{height: '75vh', overflow: 'auto'}}>
               {this.renderGames()}
-            </Container>
-          </Card.Body>
-        </Card>
-        {this.state.edit ? 
-          <>
-            <GameListSearchBar />
-            <GameListSearchResultsList parent={'wish'}/>
-          </>
-          :
-          null
-        }
+            </ListGroup>
+          
+        </Container>        
       </>
     )
   }

@@ -10,10 +10,13 @@ import GameListSearchBar from './GameListSearchBar';
 import GameListSearchResultsList from './GameListSearchResultsList';
 import { saveSavedRecsGames } from '../../redux/actions/savedRecsGamesActions';
 import { clearSearchResults } from '../../redux/actions/gamesActions';
+import ListGroup from 'react-bootstrap/ListGroup';
+import AddGameModal from '../../Profile/components/AddGameModal';
 
 class SavedRecommendationsList extends React.Component {
   state = {
-    edit: false
+    edit: false,
+    showModal: false
   }
 
   toggleEdit = () => {
@@ -26,66 +29,42 @@ class SavedRecommendationsList extends React.Component {
     })
   }
 
-  mapRow = row => {
-    const thisRow = this.props.savedRecsGames.filter(game => {
-      return this.props.savedRecsGames.indexOf(game) >= row * 5 && this.props.savedRecsGames.indexOf(game) < (row + 1) * 5;
-    });
+  showModal = () => {
+    this.props.clearSearchResults();
+    this.setState({showModal: true})
+  }
 
-    return (
-      <Row noGutters key={row}>
-        <Col xs={1}>
-        </Col>
-        {thisRow.map(game => <GameCard key={game.igdb_id} game={game} />)}
-        <Col xs={1}>
-        </Col>
-      </Row>
-    )
+  closeModal = () => {
+    this.setState({showModal: false})
   }
 
   renderGames = () => {
-    let numOfRows = parseInt(this.props.savedRecsGames.length / 5, 10);
-    const allGames = [];
-
-    if (this.props.savedRecsGames.length % 5 !== 0) { numOfRows++; }
-
-    for (let i = 0; i < numOfRows; i++) {
-      allGames.push(this.mapRow(i));
-    }
-
-    return allGames;
+    return this.props.savedRecsGames.map(game => {
+      return <GameCard key={game.id} game={game} />
+    })
   }
 
 
   render() {
     return (
       <>
-        <Card>
-          <Card.Body>
-            <Card.Title className="text-center">
-              <Row>
-                <Col xs={2}>
-                </Col>
-                <Col>
+        <Container className="mt-3 mx-auto" style={{width: '75vw'}}>
+            <Row>
+              <Col xs={2}></Col>
+              <Col>
+                <h3 className="text-center">
                   Your Saved Recommendations
-                </Col>
-                <Col xs={2}>
-                  <Button className="ml-5" onClick={this.toggleEdit}>{this.state.edit ? 'Save' : 'Edit'}</Button>
-                </Col>
-              </Row>
-            </Card.Title>
-            <Container fluid>
+                </h3>
+              </Col>
+              <Col xs={3}>
+                <Button className="ml-3 float-right" onClick={this.toggleEdit}>{this.state.edit ? 'Save' : 'Edit'}</Button>
+              </Col>
+            </Row>
+            <ListGroup className="mt-3" style={{height: '75vh', overflow: 'auto'}}>
               {this.renderGames()}
-            </Container>
-          </Card.Body>
-        </Card>
-        {this.state.edit ? 
-          <>
-            <GameListSearchBar />
-            <GameListSearchResultsList parent={'saved'}/>
-          </>
-          :
-          null
-        }
+            </ListGroup>
+          
+        </Container>        
       </>
     )
   }
