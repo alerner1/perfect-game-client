@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import { addSavedRecsGame, saveSavedRecsGames } from '../../redux/actions/savedRecsGamesActions';
 
-// we'll want some sort of "save" button and functionality in here, but we're not quite there yet
+// we'll want some sort of "add to wishlist" button and functionality in here, but we're not quite there yet
 class GameInfo extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.savedRecsGames !== this.props.savedRecsGames) {
