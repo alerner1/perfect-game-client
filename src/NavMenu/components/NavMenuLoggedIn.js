@@ -1,6 +1,5 @@
 import React from 'react';
 import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { connect } from 'react-redux';
 import { resetUser, resetSignupStep, userLogout } from '../../redux/actions/userActions';
 import { resetGames } from '../../redux/actions/gamesActions';
@@ -8,31 +7,39 @@ import Navbar from 'react-bootstrap/Navbar';
 import { withRouter } from 'react-router-dom';
 
 class NavMenuLoggedIn extends React.Component {
+  state = {
+    dropdown: false
+  }
+
   handleSelect = (eventKey) => {
-    switch(eventKey){
-    case '1':
-      this.props.history.push('/profile')
-      break;
-    case '2.1':
-      this.props.history.push('/game_lists/owned_games');
-      break;
-    case '2.2':
-      this.props.history.push('/game_lists/wishlist');
-      break;
-    case '2.3':
-      this.props.history.push('/game_lists/saved_recommendations');
-      break;
-    case '3':
-      this.props.history.push('/quick_recommendations');
-      break;
-    case '5':
-      localStorage.removeItem("token");
-      this.props.userLogout()
-      this.props.history.push('/login')
-      break;
-    default:
-      break;
+    switch (eventKey) {
+      case '1':
+        this.props.history.push('/profile')
+        break;
+      case '2':
+        this.props.history.push('/game_lists/owned_games');
+        break;
+      case '3':
+        this.props.history.push('/game_lists/wishlist');
+        break;
+      case '4':
+        this.props.history.push('/game_lists/saved_recommendations');
+        break;
+      case '5':
+        this.props.history.push('/quick_recommendations');
+        break;
+      case '7':
+        localStorage.removeItem("token");
+        this.props.userLogout()
+        this.props.history.push('/login')
+        break;
+      default:
+        break;
     }
+  }
+
+  handleDropdown = () => {
+    this.setState(prev => ({ dropdown: !prev.dropdown }))
   }
 
   render() {
@@ -46,19 +53,23 @@ class NavMenuLoggedIn extends React.Component {
               <Nav.Item>
                 <Nav.Link eventKey="1">Profile</Nav.Link>
               </Nav.Item>
-              <NavDropdown title="Game Lists" id="nav-dropdown">
-                <NavDropdown.Item eventKey="2.1">Owned Games</NavDropdown.Item>
-                <NavDropdown.Item eventKey="2.2">Wish List</NavDropdown.Item>
-                <NavDropdown.Item eventKey="2.3">Saved Recommendations</NavDropdown.Item>
-              </NavDropdown>
               <Nav.Item>
-                <Nav.Link eventKey="3">Quick Recommendations</Nav.Link>
+                <Nav.Link eventKey="2">Owned Games</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="4">Advanced Recommendations</Nav.Link>
+                <Nav.Link eventKey="3">Wish List</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="5">Log Out</Nav.Link>
+                <Nav.Link eventKey="4">Saved Recommendations</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="5">Quick Recommendations</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="6">Advanced Recommendations</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="7">Log Out</Nav.Link>
               </Nav.Item>
             </Nav>
 
@@ -74,7 +85,7 @@ const mapDispatchToProps = (dispatch) => {
     resetUser: () => dispatch(resetUser()),
     resetGames: () => dispatch(resetGames()),
     resetSignupStep: () => dispatch(resetSignupStep()),
-    userLogout: () => dispatch(userLogout())    
+    userLogout: () => dispatch(userLogout())
   }
 };
 

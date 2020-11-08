@@ -6,15 +6,17 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux'
 import { changeUserPlayedGameLikeValue, markUserPlayedGameForDestruction } from '../../redux/actions/userPlayedGamesActions';
-import{ markDisplayGameForDestruction } from '../../redux/actions/gamesActions';
+import { markDisplayGameForDestruction } from '../../redux/actions/gamesActions';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import PlayedGameModal from './PlayedGameModal';
 
 class PlayedGame extends React.Component {
 
   state = {
-    destroy: false
+    destroy: false,
+    showModal: false
   }
 
   likeInfo = () => {
@@ -87,6 +89,15 @@ class PlayedGame extends React.Component {
     )
   }
 
+  showModal = event => {
+    event.preventDefault();
+    this.setState({showModal: true})
+  }
+
+  closeModal = () => {
+    this.setState({showModal: false})
+  }
+
   render() {
     return (
       this.state.destroy ? 
@@ -94,6 +105,7 @@ class PlayedGame extends React.Component {
 
         :
             <ListGroup.Item className="py-0">
+            <PlayedGameModal showProp={this.state.showModal} game={this.props.game} closeModal={this.closeModal} />
             <Row>
               <Col xs={2}>
                 <Image className="p-0" src={this.props.game.cover_url} style={{height: '20vh'}} thumbnail fluid />
@@ -103,7 +115,7 @@ class PlayedGame extends React.Component {
                   <h4>{this.props.game.name} ({this.props.game.release_date})</h4>
                 </Row>
                 <Row>
-                  <p>{this.props.game.summary.split(' ').slice(0, 32).join(' ') + '...'}</p>
+                  <p>{this.props.game.summary.split(' ').slice(0, 31).join(' ') + '...'} <a onClick={this.showModal} href="#">(view more)</a></p>
                 </Row>
               </Col>
               <Col xs={3} className="d-flex flex-row justify-content-center h-50">

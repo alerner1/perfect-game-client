@@ -10,10 +10,14 @@ import { resetGames, addGames, updateGameLikeValue, clearSearchResults } from '.
 import GameSearchBar from '../../Signup/components/GameSearchBar';
 import SearchResultsList from '../../Signup/components/SearchResultsList';
 import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import AddGameModal from './AddGameModal';
 
 class PlayedGamesList extends React.Component {
   state = {
-    edit: false
+    edit: false,
+    showModal: false
   }
 
   componentDidMount() {
@@ -97,21 +101,38 @@ class PlayedGamesList extends React.Component {
     })
   }
 
+  showModal = () => {
+    this.props.clearSearchResults();
+    this.setState({showModal: true})
+  }
+
+  closeModal = () => {
+    this.setState({showModal: false})
+  }
+
   render() {
     return (
       <>
         <Container className="mx-auto" style={{width: '75vw'}}>
-          
-            <h3 className="text-center">
-              Games You've Played
-              <Button className="ml-5" onClick={this.toggleEdit}>{this.state.edit ? 'Save' : 'Edit'}</Button>
-            </h3>
-            <ListGroup style={{height: '50vh', overflow: 'auto'}}>
+            <AddGameModal showProp={this.state.showModal} closeModal={this.closeModal} />
+            <Row>
+              <Col xs={2}></Col>
+              <Col>
+                <h3 className="text-center">
+                  Games You've Played
+                </h3>
+              </Col>
+              <Col xs={3}>
+                <Button className="ml-3 float-right" onClick={this.toggleEdit}>{this.state.edit ? 'Save' : 'Edit'}</Button>
+                {this.state.edit ? <Button onClick={this.showModal} className="float-right">Add Game</Button> : null }
+              </Col>
+            </Row>
+            <ListGroup style={{height: '75vh', overflow: 'auto'}}>
               {this.renderPlayedGames()}
             </ListGroup>
           
         </Container>
-        {this.state.edit ? 
+        {/* {this.state.edit ? 
           <>
             <h3 className="text-center mt-3">Add Another Game</h3>
             <GameSearchBar />
@@ -119,7 +140,7 @@ class PlayedGamesList extends React.Component {
           </>
           :
           null
-        }
+        } */}
       </>
     )
   }
