@@ -9,6 +9,7 @@ import { MdDelete } from 'react-icons/md';
 import Button from 'react-bootstrap/Button';
 import { markSavedRecsGameForDestruction } from '../../redux/actions/savedRecsGamesActions';
 import { markWishlistGameForDestruction } from '../../redux/actions/wishlistGamesActions';
+import { markOwnedGameForDestruction } from '../../redux/actions/ownedGamesActions';
 import { connect } from 'react-redux';
 
 class GameCard extends React.Component {
@@ -31,6 +32,8 @@ class GameCard extends React.Component {
       this.props.markSavedRecsGameForDestruction(this.props.game)
     } else if (this.props.parent === 'wish') {
       this.props.markWishlistGameForDestruction(this.props.game)
+    } else if (this.props.parent === 'owned') {
+      this.props.markOwnedGameForDestruction(this.props.game)
     }
     this.setState({destroy: true})
   }
@@ -73,7 +76,8 @@ class GameCard extends React.Component {
 const mapDispatchToProps = dispatch => {
   return {
     markSavedRecsGameForDestruction: (gameObj) => dispatch(markSavedRecsGameForDestruction(gameObj)),
-    markWishlistGameForDestruction: (gameObj) => dispatch(markWishlistGameForDestruction(gameObj))
+    markWishlistGameForDestruction: (gameObj) => dispatch(markWishlistGameForDestruction(gameObj)),
+    markOwnedGameForDestruction: (gameObj) => dispatch(markOwnedGameForDestruction(gameObj))
   }
 }
 

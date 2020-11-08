@@ -41,7 +41,7 @@ class OwnedList extends React.Component {
 
   renderGames = () => {
     return this.props.ownedGames.map(game => {
-      return <GameCard key={game.id} game={game} />
+      return <GameCard key={game.id} game={game} edit={this.state.edit} parent="owned" />
     })
   }
 

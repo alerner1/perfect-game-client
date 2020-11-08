@@ -2,6 +2,8 @@ export const addOwnedGames = (gamesArray) => ({ type: "ADD_OWNED_GAMES", payload
 
 export const addOwnedGame = (gameObj) => ({ type: "ADD_OWNED_GAME", payload: gameObj })
 
+export const markOwnedGameForDestruction = (gameObj) => ({ type: "MARK_OWNED_GAME_FOR_DESTRUCTION", payload: gameObj })
+
 export function saveOwnedGames(gamesArray) {
   return (dispatch) => {
     const token = localStorage.getItem('token')
@@ -19,6 +21,7 @@ export function saveOwnedGames(gamesArray) {
           game: {
             igdb_id: game['igdb_id'],
             name: game['name'],
+            cover_url: game['cover_url'],
             cover_url: (game['cover'] && game['cover']['url']) || game['cover_url'],
             release_date: game['first_release_date'],
             platforms: game['platforms']
@@ -26,7 +29,20 @@ export function saveOwnedGames(gamesArray) {
         })
       })
         .then(resp => resp.json())
-        .then(console.log)
+        .then(json => {
+          if (game.destroy === true) {
+            fetch(`http://localhost:3000/api/v1/user_games/${json.id}`, {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+                "Accepts": "application/json",
+                Authorization: `Bearer ${token}`
+              }
+            })
+            .then(resp => resp.json())
+            .then(console.log('baleeted'))
+          }
+        })
     }
   }
 }

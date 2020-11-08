@@ -182,6 +182,11 @@ function ownedGamesReducer(state = defaultState.ownedGames, action) {
       return action.payload;
     case "ADD_OWNED_GAME":
       return [...state, action.payload]
+    case "MARK_OWNED_GAME_FOR_DESTRUCTION":
+      const gameIndex = state.findIndex(game => { return game.name === action.payload.name });
+      const newList = [...state];
+      newList[gameIndex]['destroy'] = true;
+      return newList;
     default:
       return state;
   }
