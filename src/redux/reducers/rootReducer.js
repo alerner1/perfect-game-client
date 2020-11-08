@@ -193,6 +193,11 @@ function wishlistGamesReducer(state = defaultState.wishlistGames, action) {
       return action.payload;
     case "ADD_WISHLIST_GAME":
       return [...state, action.payload]
+    case "MARK_WISHLIST_GAME_FOR_DESTRUCTION":
+      const gameIndex = state.findIndex(game => { return game.name === action.payload.name });
+      const newList = [...state];
+      newList[gameIndex]['destroy'] = true;
+      return newList;
     default:
       return state;
   }

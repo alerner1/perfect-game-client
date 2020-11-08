@@ -41,7 +41,7 @@ class WishList extends React.Component {
 
   renderGames = () => {
     return this.props.wishlistGames.map(game => {
-      return <GameCard key={game.id} game={game} />
+      return <GameCard key={game.id} game={game} edit={this.state.edit} parent='wish' />
     })
   }
 
@@ -50,7 +50,7 @@ class WishList extends React.Component {
     return (
       <>
         <Container className="mt-3 mx-auto" style={{width: '75vw'}}>
-            <AddGameModal showProp={this.state.showModal} closeModal={this.closeModal} parent="owned" />
+            <AddGameModal showProp={this.state.showModal} closeModal={this.closeModal} parent="wish" />
             <Row>
               <Col xs={2}></Col>
               <Col>
