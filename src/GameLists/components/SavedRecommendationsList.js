@@ -40,7 +40,7 @@ class SavedRecommendationsList extends React.Component {
 
   renderGames = () => {
     return this.props.savedRecsGames.map(game => {
-      return <GameCard key={game.id} game={game} />
+      return <GameCard key={game.id} game={game} edit={this.state.edit} />
     })
   }
 

@@ -2,6 +2,8 @@ export const addSavedRecsGames = (gamesArray) => ({ type: "ADD_SAVED_RECS_GAMES"
 
 export const addSavedRecsGame = (gameObj) => ({ type: "ADD_SAVED_RECS_GAME", payload: gameObj })
 
+export const markSavedRecsGameForDestruction = (gameObj) => ({ type: "MARK_SAVED_RECS_GAME_FOR_DESTRUCTION", payload: gameObj })
+
 export function saveSavedRecsGames(gamesArray) {
   return (dispatch) => {
     const token = localStorage.getItem('token')
@@ -27,7 +29,20 @@ export function saveSavedRecsGames(gamesArray) {
         })
       })
         .then(resp => resp.json())
-        .then(console.log)
+        .then(json => {
+          if (game.destroy === true) {
+            fetch(`http://localhost:3000/api/v1/user_games/${json.id}`, {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+                "Accepts": "application/json",
+                Authorization: `Bearer ${token}`
+              }
+            })
+            .then(resp => resp.json())
+            .then(console.log('baleeted'))
+          }
+        })
     }
   }
 }
