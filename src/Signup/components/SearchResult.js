@@ -10,11 +10,9 @@ class SearchResult extends React.Component {
   handleClick = event => {
     this.props.addGame(this.props.result);
 
-    if (this.props.parent !== 'profile') {
-      this.props.updateGameLikeValue(this.props.result, 1);
-    } else {
-      this.props.updateGameLikeValue(this.props.result, 0)
-    }
+    if (this.props.parent === 'signup') {
+      this.props.updateGameLikeValue(this.props.result, 1)
+    } 
   }
 
   mapPlatforms = () => {

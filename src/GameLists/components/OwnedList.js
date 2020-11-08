@@ -10,10 +10,23 @@ import GameListSearchBar from './GameListSearchBar';
 import GameListSearchResultsList from './GameListSearchResultsList';
 import { saveOwnedGames } from '../../redux/actions/ownedGamesActions';
 import { clearSearchResults } from '../../redux/actions/gamesActions';
+import ListGroup from 'react-bootstrap/ListGroup';
+import AddGameModal from '../../Profile/components/AddGameModal';
+import PlayedGame from '../../Profile/components/PlayedGame';
 
 class OwnedList extends React.Component {
   state = {
-    edit: false
+    edit: false,
+    showModal: false
+  }
+
+  showModal = () => {
+    this.props.clearSearchResults();
+    this.setState({showModal: true})
+  }
+
+  closeModal = () => {
+    this.setState({showModal: false})
   }
 
   toggleEdit = () => {
@@ -43,49 +56,53 @@ class OwnedList extends React.Component {
   }
 
   renderGames = () => {
-    let numOfRows = parseInt(this.props.ownedGames.length / 5, 10);
-    const allGames = [];
+    // let numOfRows = parseInt(this.props.ownedGames.length / 5, 10);
+    // const allGames = [];
 
-    if (this.props.ownedGames.length % 5 !== 0) { numOfRows++; }
+    // if (this.props.ownedGames.length % 5 !== 0) { numOfRows++; }
 
-    for (let i = 0; i < numOfRows; i++) {
-      allGames.push(this.mapRow(i));
-    }
+    // for (let i = 0; i < numOfRows; i++) {
+    //   allGames.push(this.mapRow(i));
+    // }
 
-    return allGames;
+    // return allGames;
+
+    return this.props.ownedGames.map(game => {
+      return <PlayedGame key={game.id} game={game} liked={game.liked} updateLikes={this.updateLikes} edit={this.state.edit} />
+    })
   }
 
 
   render() {
     return (
       <>
-        <Card>
-          <Card.Body>
-            <Card.Title className="text-center">
-             <Row>
-                <Col xs={2}>
-                </Col>
-                <Col>
+        <Container className="mt-3 mx-auto" style={{width: '75vw'}}>
+            <AddGameModal showProp={this.state.showModal} closeModal={this.closeModal} parent="owned" />
+            <Row>
+              <Col xs={2}></Col>
+              <Col>
+                <h3 className="text-center">
                   Games You Own
-                </Col>
-                <Col xs={2}>
-                  <Button className="ml-5" onClick={this.toggleEdit}>{this.state.edit ? 'Save' : 'Edit'}</Button>
-                </Col>
-              </Row>
-            </Card.Title>
-            <Container fluid>
+                </h3>
+              </Col>
+              <Col xs={3}>
+                <Button className="ml-3 float-right" onClick={this.toggleEdit}>{this.state.edit ? 'Save' : 'Edit'}</Button>
+                {this.state.edit ? <Button onClick={this.showModal} className="float-right">Add Game</Button> : null }
+              </Col>
+            </Row>
+            <ListGroup className="mt-3" style={{height: '75vh', overflow: 'auto'}}>
               {this.renderGames()}
-            </Container>
-          </Card.Body>
-        </Card>
-        {this.state.edit ? 
+            </ListGroup>
+          
+        </Container>
+        {/* {this.state.edit ? 
           <>
             <GameListSearchBar />
             <GameListSearchResultsList parent={'owned'}/>
           </>
           :
-          null
-        }
+          null }*/}
+        
       </>
     )
   }

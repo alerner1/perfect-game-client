@@ -114,7 +114,7 @@ class PlayedGamesList extends React.Component {
     return (
       <>
         <Container className="mt-3 mx-auto" style={{width: '75vw'}}>
-            <AddGameModal showProp={this.state.showModal} closeModal={this.closeModal} />
+            <AddGameModal showProp={this.state.showModal} closeModal={this.closeModal} parent="profile" />
             <Row>
               <Col xs={2}></Col>
               <Col>

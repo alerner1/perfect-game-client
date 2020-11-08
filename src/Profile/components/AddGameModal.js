@@ -8,6 +8,8 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Image from 'react-bootstrap/Image';
 import GameSearchBar from '../../Signup/components/GameSearchBar';
 import SearchResultsList from '../../Signup/components/SearchResultsList';
+import GameListSearchBar from '../../GameLists/components/GameListSearchBar';
+import GameListSearchResultsList from '../../GameLists/components/GameListSearchResultsList';
 
 const AddGameModal = (props) => {
 
@@ -18,8 +20,19 @@ const AddGameModal = (props) => {
           <Modal.Title className="w-100 text-center">Add Played Game</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <GameSearchBar />
-          <SearchResultsList parent='profile' />
+          {
+            props.parent === 'profile' ?
+            <>
+              <GameSearchBar />
+              <SearchResultsList parent={props.parent} />
+            </>
+          :
+            <>
+              <GameListSearchBar />
+              <GameListSearchResultsList parent={props.parent} />
+            </>
+          }
+          
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={props.closeModal}>

@@ -24,7 +24,7 @@ class CustomLikedGamesContainer extends React.Component {
         </Row>
         <Row>
           <Col>
-            <SearchResultsList />
+            <SearchResultsList parent="signup" />
           </Col>
         </Row>
         <Row>
