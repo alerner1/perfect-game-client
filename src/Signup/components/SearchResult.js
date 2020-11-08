@@ -1,7 +1,10 @@
 import React from 'react';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { connect } from 'react-redux';
 import { addGame, updateGameLikeValue } from '../../redux/actions/gamesActions';
+import Image from 'react-bootstrap/Image';
 
 class SearchResult extends React.Component {
   handleClick = event => {
@@ -30,7 +33,14 @@ class SearchResult extends React.Component {
   render() {
     return(
       <ListGroup.Item action onClick={this.handleClick}>
-        {this.props.result.name} {this.props.result.first_release_date ? `(${this.props.result.first_release_date})` : null } {this.mapPlatforms()}
+        <Row>
+          <Col xs={2}>
+          <Image className="p-0" src={this.props.result.cover_url} style={{height: '20vh'}} thumbnail fluid />
+          </Col>
+          <Col>
+            {this.props.result.name} {this.props.result.first_release_date ? `(${this.props.result.first_release_date})` : null } {this.mapPlatforms()}
+          </Col>
+        </Row>
       </ListGroup.Item>
     )
   }

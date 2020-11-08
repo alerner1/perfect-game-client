@@ -13,8 +13,8 @@ const AddGameModal = (props) => {
 
   return (
     <>
-      <Modal scrollable show={props.showProp} onHide={props.closeModal} size="lg">
-        <Modal.Header className="w-100" closeButton>
+      <Modal dialogClassName="add-game-modal" scrollable show={props.showProp} onHide={props.closeModal} size="lg">
+        <Modal.Header closeButton>
           <Modal.Title className="w-100 text-center">Add Played Game</Modal.Title>
         </Modal.Header>
         <Modal.Body>
