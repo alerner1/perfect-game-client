@@ -29,7 +29,7 @@ class App extends React.Component {
           <Route path="/login" render={() => <LoginForm />} />
           <Route path="/signup" render={() => <SignupContainer />} />
           {/* hypothetically we could have the component below show a "loading" thing until there is a currentUser. if currentUser is an empty obj or whatever then reroute? */}
-          <Route path="/profile" render={() => <ProfileContainer />} />
+          <Route path="/game_lists/played_games" render={() => <ProfileContainer />} />
           <Route path="/game_lists/owned_games" render={() => <GameListContainer list="owned" />} />
           <Route path="/game_lists/wishlist" render={() => <GameListContainer list="wish" />} />
           <Route path="/game_lists/saved_recommendations" render={() => <GameListContainer list="saved" />} />

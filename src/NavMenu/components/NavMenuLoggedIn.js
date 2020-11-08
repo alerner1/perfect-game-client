@@ -14,7 +14,7 @@ class NavMenuLoggedIn extends React.Component {
   handleSelect = (eventKey) => {
     switch (eventKey) {
       case '1':
-        this.props.history.push('/profile')
+        this.props.history.push('/game_lists/played_games')
         break;
       case '2':
         this.props.history.push('/game_lists/owned_games');
@@ -51,7 +51,7 @@ class NavMenuLoggedIn extends React.Component {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav defaultActiveKey="1" onSelect={this.handleSelect} className="mr-auto">
               <Nav.Item>
-                <Nav.Link eventKey="1">Profile</Nav.Link>
+                <Nav.Link eventKey="1">Played Games</Nav.Link>
               </Nav.Item>
               <Nav.Item>
                 <Nav.Link eventKey="2">Owned Games</Nav.Link>

@@ -113,7 +113,7 @@ class PlayedGamesList extends React.Component {
   render() {
     return (
       <>
-        <Container className="mx-auto" style={{width: '75vw'}}>
+        <Container className="mt-3 mx-auto" style={{width: '75vw'}}>
             <AddGameModal showProp={this.state.showModal} closeModal={this.closeModal} />
             <Row>
               <Col xs={2}></Col>
@@ -127,7 +127,7 @@ class PlayedGamesList extends React.Component {
                 {this.state.edit ? <Button onClick={this.showModal} className="float-right">Add Game</Button> : null }
               </Col>
             </Row>
-            <ListGroup style={{height: '75vh', overflow: 'auto'}}>
+            <ListGroup className="mt-3" style={{height: '75vh', overflow: 'auto'}}>
               {this.renderPlayedGames()}
             </ListGroup>
           

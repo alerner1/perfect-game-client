@@ -6,7 +6,7 @@ class ProfileContainer extends React.Component {
   render() {
     return (
       <>
-        <ProfileInfo />
+        {/* <ProfileInfo /> */}
         <PlayedGamesList />
       </>
     )
