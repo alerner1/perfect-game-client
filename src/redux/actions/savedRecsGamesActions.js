@@ -22,7 +22,6 @@ export function saveSavedRecsGames(gamesArray) {
             igdb_id: game['igdb_id'],
             name: game['name'],
             cover_url: game['cover_url'],
-            cover_url: (game['cover'] && game['cover']['url']) || game['cover_url'],
             release_date: game['first_release_date'],
             platforms: game['platforms']
           }
