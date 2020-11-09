@@ -177,17 +177,17 @@ class AdvancedRecsForm extends React.Component {
           <Form.Group>
             {this.state.allPlatforms ?
               <>
-                <Form.Check disabled inline label={default_platforms[0]} onClick={this.handleChange} checked={true} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[0]}`} value={default_platforms[0]} />
+                <Form.Check disabled inline label="PC" onClick={this.handleChange} checked={true} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[0]}`} value={default_platforms[0]} />
                 <Form.Check disabled inline label='Nintendo Switch'onClick={this.handleChange} checked={true} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[1]}`} value={default_platforms[1]} />
                 <Form.Check disabled inline label='PlayStation 4' onClick={this.handleChange} checked={true} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[2]}`} value={default_platforms[2]} />
                 <Form.Check disabled inline label='Xbox One' onClick={this.handleChange} checked={true} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[3]}`} value={default_platforms[3]} />
               </>
               :
               <>
-                <Form.Check inline label={default_platforms[0]} onClick={this.handleChange} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[0]}`} value={default_platforms[0]} />
-                <Form.Check inline label={default_platforms[1]} onClick={this.handleChange} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[1]}`} value={default_platforms[1]} />
-                <Form.Check inline label={default_platforms[2]} onClick={this.handleChange} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[2]}`} value={default_platforms[2]} />
-                <Form.Check inline label={default_platforms[3]} onClick={this.handleChange} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[3]}`} value={default_platforms[3]} />
+                <Form.Check inline label="PC" onClick={this.handleChange} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[0]}`} value={default_platforms[0]} />
+                <Form.Check inline label="Nintendo Switch" onClick={this.handleChange} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[1]}`} value={default_platforms[1]} />
+                <Form.Check inline label="PlayStation 4" onClick={this.handleChange} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[2]}`} value={default_platforms[2]} />
+                <Form.Check inline label='Xbox One' onClick={this.handleChange} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[3]}`} value={default_platforms[3]} />
               </>
             }
             <Form.Check inline label='All Platforms' onClick={this.handleChange} name="all_platforms" type='checkbox' id={`inline-checkbox-all_platforms`} />
@@ -270,4 +270,4 @@ const genre_names = genres.map(genre => { return genre.name });
 
 const multiplayer_modes = ["campaigncoop", "dropin", "lancoop", "offlinecoop", "onlinecoop", "splitscreen", "splitscreenonline"]
 
-const game_modes = ["Single Player", "Multiplayer", "Battle Royale", "Co-operative", "Massively Multiplayer Online (MMO)"]
+const game_modes = ["Single player", "Multiplayer", "Battle Royale", "Co-operative", "Massively Multiplayer Online (MMO)"]

@@ -115,7 +115,7 @@ class PlayedGame extends React.Component {
                   <h4>{this.props.game.name} ({this.props.game.release_date})</h4>
                 </Row>
                 <Row>
-                  <p>{this.props.game.summary.split(' ').slice(0, 31).join(' ') + '...'} <a onClick={this.showModal} href="#">(view more)</a></p>
+                  <p>{this.props.game.summary && this.props.game.summary.split(' ').slice(0, 31).join(' ') + '...'} <a onClick={this.showModal} href="#">(view more)</a></p>
                 </Row>
               </Col>
               <Col xs={3} className="d-flex flex-row justify-content-center h-50">
