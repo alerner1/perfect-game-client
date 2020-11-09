@@ -79,7 +79,7 @@ class PlayedGamesList extends React.Component {
               })
             })
             .then(resp => resp.json())
-            .then(console.log)
+            .then(this.props.getUser())
           } else if (game.destroy === true && typeof(game.id) !== 'undefined') {
             const u_p_game_id = this.props.userPlayedGames.find(u_p_game => { return u_p_game.game_id === game.id}).id
             fetch(`http://localhost:3000/api/v1/user_played_games/${u_p_game_id}`, {
@@ -91,10 +91,9 @@ class PlayedGamesList extends React.Component {
               }
             })
             .then(resp => resp.json())
-            .then(console.log('BALEETED'))
+            .then(this.props.getUser())
           }
         }
-        this.props.getUser()
       } else {
         this.props.clearSearchResults();
       }
