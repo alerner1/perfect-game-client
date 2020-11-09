@@ -28,6 +28,9 @@ class NavMenuLoggedIn extends React.Component {
       case '5':
         this.props.history.push('/quick_recommendations');
         break;
+      case '6':
+        this.props.history.push('/advanced_recommendations/new');
+        break;
       case '7':
         localStorage.removeItem("token");
         this.props.userLogout()

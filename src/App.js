@@ -8,6 +8,7 @@ import SignupContainer from './Signup/containers/SignupContainer';
 import ProfileContainer from './Profile/containers/ProfileContainer';
 import GameListContainer from './GameLists/containers/GameListContainer';
 import RecommendationsContainer from './Recommendations/containers/RecommendationsContainer';
+import AdvancedRecsFormContainer from './Recommendations/containers/AdvancedRecsFormContainer';
 
 class App extends React.Component {
   componentDidMount() {
@@ -34,11 +35,8 @@ class App extends React.Component {
           <Route path="/game_lists/wishlist" render={() => <GameListContainer list="wish" />} />
           <Route path="/game_lists/saved_recommendations" render={() => <GameListContainer list="saved" />} />
 
-          {/* should also run the recommendations algorithm here.
-          involves a fetch request to backend, then save results in state
-          then put them in display games.
-          quick recommendations should display a loading screen while that's going on */}
           <Route path="/quick_recommendations" render={() => <RecommendationsContainer />} />
+          <Route path="/advanced_recommendations/new" render={() => <AdvancedRecsFormContainer />} />
         </Switch>
       </div>
     )
