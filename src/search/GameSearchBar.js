@@ -27,7 +27,7 @@ class GameSearchBar extends React.Component {
               <Form.Label>Search Games: </Form.Label>
             </Col>
             <Col>
-              <Form.Control name="search" onChange={this.handleChange} type="text" value={this.props.search} placeholder="Search for a game you like" />
+              <Form.Control name="search" onChange={this.handleChange} type="text" value={this.props.search} placeholder="Search for a game" />
             </Col>
             <Col>
               <Button type="submit" className="float-right">Search</Button>

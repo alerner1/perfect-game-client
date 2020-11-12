@@ -71,8 +71,7 @@ THURSDAY:
 
 SUNDAY:
 
-  * saving a recommendation changes the list of recommendations next time you generate it... that's nice but i didn't tell it to do that yet so why?
-  * also shouldn't recommend a game if you've already played it or if it's on your saved recs list but yeah i didn't put that in yet soooo
+  * DONE also shouldn't recommend a game if you've already played it or if it's on your saved recs list but yeah i didn't put that in yet soooo
   * DONE basically, fix quick recommendations and then add advanced recommendations functionality
   * custom liked games is still pretty ugly, maybe fix that
   * custom liked games should continue on to played games, currently getting an error until refresh because it redirects wrong

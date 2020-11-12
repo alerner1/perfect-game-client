@@ -21,16 +21,16 @@ class GameInfo extends React.Component {
 
   chooseButton = () => {
     if (this.props.savedRecsGames.filter(game => {return game.name === this.props.showGame.name}).length > 0) {
-      return <Button disabled className="float-right">Saved</Button>
+      return <Button disabled className="ml-4">Saved</Button>
     } else {
-      return <Button onClick={this.handleSave} className="float-right">Save</Button>
+      return <Button onClick={this.handleSave} className="ml-4">Save</Button>
     }
   }
 
   mapPlatforms = () => {
     if (this.props.showGame.platforms) {
       return (
-        <ListGroup horizontal className="justify-content-center">
+        <ListGroup style={{overflow: 'auto'}} className="justify-content-center" horizontal >
           {this.props.showGame.platforms.map(platform => { 
           return (
             <ListGroup.Item>{platform.abbreviation}</ListGroup.Item>
@@ -44,12 +44,48 @@ class GameInfo extends React.Component {
     return(
       this.props.showGame.name ?
       <>
-        <Row>
-          <Col xs={1}></Col>
+        <Row className="my-3">
+          <Col xs={4}>
+            <Image  src={this.props.showGame.cover_url} fluid />
+          </Col>
+          <Col xs={8}>
+            <Row noGutters>
+              <Col xs={2}>
+              </Col>
+              <Col>
+                <h3 className="text-center">{this.props.showGame.name}</h3>
+              </Col>
+              <Col xs={2}>
+                {this.chooseButton()}
+              </Col>
+            </Row>
+            <Row noGutters>
+              <Col xs={2}>
+              </Col>
+              <Col>
+              <h6 className="text-center">{this.props.showGame.release_date}</h6>
+              </Col>
+              <Col xs={2}>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                {this.mapPlatforms()}
+              </Col>
+            </Row>
+            <Row className="mt-4">
+              <Col>
+                <p>{this.props.showGame.summary}</p>
+              </Col>
+            </Row>
+          </Col>          
+        </Row>
+        {/* <Row noGutters className="mt-3">
+          <Col xs={5}></Col>
           <Col>
             <h3 className="text-center">{this.props.showGame.name}</h3>
           </Col>
-          <Col xs={1}>
+          <Col xs={5}>
             {this.chooseButton()}
           </Col>
         </Row>
@@ -62,7 +98,7 @@ class GameInfo extends React.Component {
           <Col xs={4}>
             <Image src={this.props.showGame.cover_url} fluid />
           </Col>
-        </Row>
+        </Row> */}
       </>
       :
       null

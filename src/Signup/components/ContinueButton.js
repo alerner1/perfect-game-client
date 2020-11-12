@@ -37,7 +37,7 @@ class ContinueButton extends React.Component {
   }
 
   render(){
-    return <Button onClick={this.handleClick} className='float-right mr-2'>Next</Button>
+    return <Button onClick={this.handleClick} className='float-right mr-2'>Save and Continue</Button>
   }
 }
 

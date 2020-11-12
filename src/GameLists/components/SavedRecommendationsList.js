@@ -50,7 +50,7 @@ class SavedRecommendationsList extends React.Component {
       <>
         <Container className="mt-3 mx-auto" style={{width: '75vw'}}>
             <Row>
-              <Col xs={2}></Col>
+              <Col xs={3}></Col>
               <Col>
                 <h3 className="text-center">
                   Your Saved Recommendations

@@ -5,6 +5,8 @@ import { resetUser, resetSignupStep, userLogout } from '../../redux/actions/user
 import { resetGames } from '../../redux/actions/gamesActions';
 import Navbar from 'react-bootstrap/Navbar';
 import { withRouter } from 'react-router-dom';
+import { getQuickRecommendations } from '../../redux/actions/recommendedGamesActions';
+
 
 class NavMenuLoggedIn extends React.Component {
   state = {
@@ -26,6 +28,7 @@ class NavMenuLoggedIn extends React.Component {
         this.props.history.push('/game_lists/saved_recommendations');
         break;
       case '5':
+        this.props.getQuickRecommendations();
         this.props.history.push('/quick_recommendations');
         break;
       case '6':
@@ -88,7 +91,8 @@ const mapDispatchToProps = (dispatch) => {
     resetUser: () => dispatch(resetUser()),
     resetGames: () => dispatch(resetGames()),
     resetSignupStep: () => dispatch(resetSignupStep()),
-    userLogout: () => dispatch(userLogout())
+    userLogout: () => dispatch(userLogout()),
+    getQuickRecommendations: () => dispatch(getQuickRecommendations())
   }
 };
 

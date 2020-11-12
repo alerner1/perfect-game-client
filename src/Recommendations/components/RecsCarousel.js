@@ -41,7 +41,7 @@ class RecsCarousel extends React.Component {
           <Col xs={1}></Col>
           <Col>
             <Container fluid className="border border-dark rounded p-3">
-              <Row noGutters>
+              <Row>
                 {thisRow.map(game => {return (<Col><RecCard game={game} /></Col>)})}
               </Row>
             </Container>

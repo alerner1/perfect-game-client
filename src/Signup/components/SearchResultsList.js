@@ -22,7 +22,7 @@ class SearchResultsList extends React.Component {
 
   render() {
     return (
-      <ListGroup>
+      <ListGroup style={{height: '40vh', overflow: 'auto'}}>
         {this.mapSearchResults()}
       </ListGroup>
     )

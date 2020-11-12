@@ -7,7 +7,7 @@ class AdvancedRecsFormContainer extends React.Component {
     return(
       <>
         <Container>
-          <h3 className="text-center mt-2">Advanced Recommendation Options</h3>
+          <h3 className="text-center my-3">Advanced Recommendation Options</h3>
           <AdvancedRecsForm />
         </Container>
       </>

@@ -1,8 +1,10 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { getAdvancedRecommendations } from '../../redux/actions/recommendedGamesActions';
 
 class AdvancedRecsForm extends React.Component {
@@ -10,7 +12,7 @@ class AdvancedRecsForm extends React.Component {
     formData: {
       platforms: [],
       genres: [],
-      releaseDate: [1900, 2020],
+      releaseDate: [],
       gameModes: [],
       multiplayerModes: [],
       onlyOwned: false
@@ -21,6 +23,7 @@ class AdvancedRecsForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     this.props.getAdvancedRecommendations(this.state.formData);
+    this.props.history.push('/advanced_recommendations')
   }
 
   handleChange = event => {
@@ -148,23 +151,32 @@ class AdvancedRecsForm extends React.Component {
   }
 
   mapGenres = () => {
-    return genre_names.sort().map(genre => <Form.Check inline label={genre} onClick={this.handleChange} name="genre" type='checkbox' id={genre} value={genre} />)
+    return genre_names.sort().map(genre => <Col xs={4}><Form.Check inline label={genre} onClick={this.handleChange} name="genre" type='checkbox' id={genre} value={genre} /></Col>)
   }
 
   mapGameModes = () => {
-    return game_modes.map(mode => <Form.Check inline label={mode} onClick={this.handleChange} name="game-mode" type='checkbox' id={mode} value={mode} />)
+    return (
+      <>
+        <Col xs={3}><Form.Check inline label="Single Player" onClick={this.handleChange} name="game-mode" type="checkbox" id="Single player" value="Single player" /></Col>
+        <Col xs={3}><Form.Check inline label="Multiplayer" onClick={this.handleChange} name="game-mode" type="checkbox" id="Multiplayer" value="Multiplayer" /></Col>
+        <Col xs={3}><Form.Check inline label="Co-operative" onClick={this.handleChange} name="game-mode" type="checkbox" id="Co-operative" value="Co-operative" /></Col>
+        <Col xs={3}><Form.Check inline label="Battle Royale" onClick={this.handleChange} name="game-mode" type="checkbox" id="Battle Royale" value="Battle Royale" /></Col>
+        <Col xs={3}><Form.Check inline label="MMO" onClick={this.handleChange} name="game-mode" type="checkbox" id="Massively Multiplayer Online (MMO)" value="Massively Multiplayer Online (MMO)" /></Col>
+      </>
+    )
+    // return game_modes.map(mode => <Col xs={3}><Form.Check inline label={mode} onClick={this.handleChange} name="game-mode" type='checkbox' id={mode} value={mode} /></Col>)
   }
 
   mapMultiplayerModes = () => {
     return (
       <>
-        <Form.Check inline label='Campaign Co-op' onClick={this.handleChange} name="multiplayer-mode" type='checkbox' id='campaigncoop' value='campaigncoop' />
-        <Form.Check inline label='Drop-in' onClick={this.handleChange} name="multiplayer-mode" type='checkbox' id='dropin' value='dropin' />
-        <Form.Check inline label='Local Co-op' onClick={this.handleChange} name="multiplayer-mode" type='checkbox' id='lancoop' value='lancoop' />
-        <Form.Check inline label='Offline Co-op' onClick={this.handleChange} name="multiplayer-mode" type='checkbox' id='offlinecoop' value='offlinecoop' />
-        <Form.Check inline label='Online Co-op' onClick={this.handleChange} name="multiplayer-mode" type='checkbox' id='onlinecoop' value='onlinecoop' />
-        <Form.Check inline label='Split Screen' onClick={this.handleChange} name="multiplayer-mode" type='checkbox' id='splitscreen' value='splitscreen' />
-        <Form.Check inline label='Split Screen Online' onClick={this.handleChange} name="multiplayer-mode" type='checkbox' id='splitscreenonline' value='splitscreenonline' />
+        <Col xs={3}><Form.Check inline label='Campaign Co-op' onClick={this.handleChange} name="multiplayer-mode" type='checkbox' id='campaigncoop' value='campaigncoop' /></Col>
+        <Col xs={3}><Form.Check inline label='Drop-in' onClick={this.handleChange} name="multiplayer-mode" type='checkbox' id='dropin' value='dropin' /></Col>
+        <Col xs={3}><Form.Check inline label='Local Co-op' onClick={this.handleChange} name="multiplayer-mode" type='checkbox' id='lancoop' value='lancoop' /></Col>
+        <Col xs={3}><Form.Check inline label='Offline Co-op' onClick={this.handleChange} name="multiplayer-mode" type='checkbox' id='offlinecoop' value='offlinecoop' /></Col>
+        <Col xs={3}><Form.Check inline label='Online Co-op' onClick={this.handleChange} name="multiplayer-mode" type='checkbox' id='onlinecoop' value='onlinecoop' /></Col>
+        <Col xs={3}><Form.Check inline label='Split Screen' onClick={this.handleChange} name="multiplayer-mode" type='checkbox' id='splitscreen' value='splitscreen' /></Col>
+        <Col xs={3}><Form.Check inline label='Split Screen Online' onClick={this.handleChange} name="multiplayer-mode" type='checkbox' id='splitscreenonline' value='splitscreenonline' /></Col>
       </>
     )
   }
@@ -172,79 +184,101 @@ class AdvancedRecsForm extends React.Component {
   render() {
     return (
       <Form>
-        <Form.Group>
-          <Form.Label>Platforms: </Form.Label>
-          <Form.Group>
-            {this.state.allPlatforms ?
-              <>
-                <Form.Check disabled inline label="PC" onClick={this.handleChange} checked={true} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[0]}`} value={default_platforms[0]} />
-                <Form.Check disabled inline label='Nintendo Switch'onClick={this.handleChange} checked={true} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[1]}`} value={default_platforms[1]} />
-                <Form.Check disabled inline label='PlayStation 4' onClick={this.handleChange} checked={true} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[2]}`} value={default_platforms[2]} />
-                <Form.Check disabled inline label='Xbox One' onClick={this.handleChange} checked={true} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[3]}`} value={default_platforms[3]} />
-              </>
-              :
-              <>
-                <Form.Check inline label="PC" onClick={this.handleChange} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[0]}`} value={default_platforms[0]} />
-                <Form.Check inline label="Nintendo Switch" onClick={this.handleChange} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[1]}`} value={default_platforms[1]} />
-                <Form.Check inline label="PlayStation 4" onClick={this.handleChange} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[2]}`} value={default_platforms[2]} />
-                <Form.Check inline label='Xbox One' onClick={this.handleChange} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[3]}`} value={default_platforms[3]} />
-              </>
-            }
-            <Form.Check inline label='All Platforms' onClick={this.handleChange} name="all_platforms" type='checkbox' id={`inline-checkbox-all_platforms`} />
-          </Form.Group>
+        <Form.Group as={Row}>
+          <Form.Label className="h6" column xs={2}>Platforms: </Form.Label>
+          <Col>
+            <Form.Group as={Row}>
+              {this.state.allPlatforms ?
+                <>
+                  <Col xs={3}><Form.Check disabled inline label="PC" onClick={this.handleChange} checked={true} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[0]}`} value={default_platforms[0]} /></Col>
+                  <Col xs={3}><Form.Check disabled inline label='Nintendo Switch'onClick={this.handleChange} checked={true} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[1]}`} value={default_platforms[1]} /></Col>
+                  <Col xs={3}><Form.Check disabled inline label='PlayStation 4' onClick={this.handleChange} checked={true} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[2]}`} value={default_platforms[2]} /></Col>
+                  <Col xs={3}><Form.Check disabled inline label='Xbox One' onClick={this.handleChange} checked={true} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[3]}`} value={default_platforms[3]} /></Col>
+                </>
+                :
+                <>
+                  <Col xs={3}><Form.Check inline label="PC" onClick={this.handleChange} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[0]}`} value={default_platforms[0]} /></Col>
+                  <Col xs={3}><Form.Check inline label="Nintendo Switch" onClick={this.handleChange} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[1]}`} value={default_platforms[1]} /></Col>
+                  <Col xs={3}> <Form.Check inline label="PlayStation 4" onClick={this.handleChange} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[2]}`} value={default_platforms[2]} /></Col>
+                  <Col xs={3}><Form.Check inline label='Xbox One' onClick={this.handleChange} name="platform" type='checkbox' id={`inline-checkbox-${default_platforms[3]}`} value={default_platforms[3]} /></Col>
+                </>
+              }
+              <Col xs={3}><Form.Check inline label='All Platforms' onClick={this.handleChange} name="all_platforms" type='checkbox' id={`inline-checkbox-all_platforms`} /></Col>
+            </Form.Group>
+          </Col>
         </Form.Group>
         <Form.Group>
-          <Form.Label>
-            Year released:
-          </Form.Label>
           <Form.Row>
-            <Col xs={1}>
-              <Form.Control name="start-year" onChange={this.handleChange} type="number" value={this.state.formData.releaseDate[0]} placeholder="Earliest year" />
+            <Form.Label className="h6" column xs={2}>
+              Year released:
+            </Form.Label>
+            <Col xs={3}>
+              <Form.Group>
+                <Form.Control name="start-year" onChange={this.handleChange} type="number" value={this.state.formData.releaseDate[0]} placeholder="Earliest year" />
+              </Form.Group>
             </Col>
-            <Col xs={1} className="text-center">
-              &#8212;
-                </Col>
-            <Col xs={1}>
+            &#8212;
+            <Col xs={3}>
               <Form.Control name="end-year" onChange={this.handleChange} type="number" value={this.state.formData.releaseDate[1]} placeholder="Latest year" />
             </Col>
           </Form.Row>
         </Form.Group>
         <Form.Group>
-          <Form.Label>Genres: </Form.Label>
-          <Form.Group>
-            {this.mapGenres()}
-          </Form.Group>
+          <Form.Row>
+            <Form.Label className="h6" column xs={2}>Genres: </Form.Label>
+            <Col>
+              <Form.Group>
+                <Form.Row>
+                  {this.mapGenres()}
+                </Form.Row>
+              </Form.Group>
+            </Col>
+          </Form.Row>
         </Form.Group>
         <Form.Group>
-          <Form.Label>Game modes: </Form.Label>
-          <Form.Group>
-            {this.mapGameModes()}
-          </Form.Group>
+          <Form.Row>
+            <Form.Label className="h6" column xs={2}>Game modes: </Form.Label>
+            <Col>
+              <Form.Group>
+                <Form.Row>
+                  {this.mapGameModes()}
+                </Form.Row>
+              </Form.Group>
+            </Col>
+          </Form.Row>
         </Form.Group>
         {
           this.state.formData.gameModes.includes("Multiplayer") || this.state.formData.gameModes.includes("Co-operative") ?
             <>
               <Form.Group>
-                <Form.Label>
-                  Multiplayer modes:
-                  </Form.Label>
-                <Form.Group>
-                  {this.mapMultiplayerModes()}
-                </Form.Group>
+                <Form.Row>
+                  <Form.Label className="h6" column xs={2}>
+                    Multiplayer modes:
+                    </Form.Label>
+                  <Col>
+                    <Form.Group>
+                      <Form.Row>
+                        {this.mapMultiplayerModes()}
+                      </Form.Row>
+                    </Form.Group>
+                  </Col>
+                </Form.Row>
               </Form.Group>
             </>
             :
             null
         }
         <Form.Group>
-          <Form.Label>
-            Ownership:
-          </Form.Label>
-          <Form.Group>
-            <Form.Check label='only include games you already own' onChange={this.handleChange} name="only-owned" type="checkbox" id="only-owned" checked={this.state.formData.onlyOwned} />
-          </Form.Group>
+          <Form.Row>
+            <Form.Label className="h6" column xs={2}>
+              Ownership:
+            </Form.Label>
+            <Col>
+              <Form.Check label='Only include games you already own' onChange={this.handleChange} name="only-owned" type="checkbox" id="only-owned" checked={this.state.formData.onlyOwned} />
+            </Col>
+          </Form.Row>
         </Form.Group>
-        <Button onClick={this.handleSubmit} block type="submit">Submit</Button>
+        <Button className="w-50 mx-auto mb-3" onClick={this.handleSubmit} block type="submit">Submit</Button>
       </Form>
     )
   }
@@ -256,7 +290,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(AdvancedRecsForm);
+export default connect(null, mapDispatchToProps)(withRouter(AdvancedRecsForm));
 
 const default_platforms = ['PC', 'Switch', 'PS4', 'XONE']
 
@@ -270,4 +304,4 @@ const genre_names = genres.map(genre => { return genre.name });
 
 const multiplayer_modes = ["campaigncoop", "dropin", "lancoop", "offlinecoop", "onlinecoop", "splitscreen", "splitscreenonline"]
 
-const game_modes = ["Single player", "Multiplayer", "Battle Royale", "Co-operative", "Massively Multiplayer Online (MMO)"]
+const game_modes = ["Single player", "Multiplayer", "Co-operative", "Massively Multiplayer Online (MMO)", "Battle Royale"]

@@ -52,7 +52,7 @@ class WishList extends React.Component {
         <Container className="mt-3 mx-auto" style={{width: '75vw'}}>
             <AddGameModal showProp={this.state.showModal} closeModal={this.closeModal} parent="wish" />
             <Row>
-              <Col xs={2}></Col>
+              <Col xs={3}></Col>
               <Col>
                 <h3 className="text-center">
                   Your Wish List

@@ -37,6 +37,7 @@ class App extends React.Component {
 
           <Route path="/quick_recommendations" render={() => <RecommendationsContainer />} />
           <Route path="/advanced_recommendations/new" render={() => <AdvancedRecsFormContainer />} />
+          <Route path="/advanced_recommendations" render={() => <RecommendationsContainer />} />
         </Switch>
       </div>
     )

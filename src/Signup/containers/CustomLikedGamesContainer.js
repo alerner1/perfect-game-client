@@ -22,17 +22,17 @@ class CustomLikedGamesContainer extends React.Component {
             <GameSearchBar />
           </Col>
         </Row>
-        <Row>
+        {/* <Row>
           <Col>
-            <SearchResultsList parent="signup" />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            {/* <PreviousButton />  */}
+             <PreviousButton />  
           </Col>
           <Col>
             <ContinueButton />
+          </Col>
+        </Row> */}
+        <Row>
+          <Col>
+            <SearchResultsList parent="signup" />
           </Col>
         </Row>
       </Container>
