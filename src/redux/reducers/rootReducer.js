@@ -244,7 +244,11 @@ function recommendedGamesReducer(state = defaultState.recommendedGames, action) 
 function showGameReducer(state = defaultState.showGame, action) {
   switch(action.type){
     case "ADD_SHOW_GAME":
-      return action.payload;
+      if (typeof(action.payload) !== 'undefined') {
+        return action.payload;
+      } else {
+        return {};
+      }
     case "CLEAR_GAME":
       return {};
     default: 

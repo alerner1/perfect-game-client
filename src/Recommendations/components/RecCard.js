@@ -2,6 +2,7 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import { connect } from 'react-redux';
 import { addShowGame } from '../../redux/actions/showGameActions';
+import Image from 'react-bootstrap/Image';
 
 class RecCard extends React.Component {
   handleClick = () => {
@@ -9,17 +10,21 @@ class RecCard extends React.Component {
   }
 
   render() {
-    return (
-      <Card onClick={this.handleClick} style={{cursor: "pointer", height: "100%"}}>
-        <Card.Body className="p-0 h-100 d-flex flex-column">
-          {/* <Card.Subtitle>
-            {this.props.game.name}
-          </Card.Subtitle> */}
-          <Card.Img variant="bottom" className="mt-auto" src={this.props.game.cover_url}>
-          </Card.Img>
-        </Card.Body>
-      </Card>
-    )
+    if (Object.keys(this.props.game).length !== 0) {
+      return ( 
+        <Card onClick={this.handleClick} style={{cursor: "pointer"}}>
+          <Card.Body className="p-0 d-flex flex-column">
+            {/* <Card.Subtitle>
+              {this.props.game.name}
+            </Card.Subtitle> */}
+            <Image fluid className="mt-auto" src={this.props.game.cover_url}>
+            </Image>
+          </Card.Body>
+        </Card>
+      )
+    } else {
+      return null;
+    }
   }
 }
 

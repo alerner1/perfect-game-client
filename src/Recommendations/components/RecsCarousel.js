@@ -16,6 +16,12 @@ class RecsCarousel extends React.Component {
           <p className="pl-3">Getting recommendations...</p>
         </div>
       )
+    } else if (this.props.recommendedGames.length === 0) {
+      return (
+        <div className="d-flex justify-content-center my-5">
+          <p className="pl-3">No recommendations found! Try less specific filters.</p>
+        </div>
+      )
     } else {
       let numOfRows = parseInt(this.props.recommendedGames.length / 5, 10);
       const allGames = [];
@@ -34,6 +40,9 @@ class RecsCarousel extends React.Component {
     const thisRow = this.props.recommendedGames.filter(game => {
       return this.props.recommendedGames.indexOf(game) >= row * 5 && this.props.recommendedGames.indexOf(game) < (row + 1) * 5;
     });
+    while (thisRow.length < 5) {
+      thisRow.push({})
+    }
 
     return (
       <Carousel.Item>
