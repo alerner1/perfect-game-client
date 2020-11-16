@@ -3,7 +3,7 @@ export function getQuickRecommendations() {
     dispatch({ type: 'CLEAR_GAME' })
     dispatch({ type: 'REQUESTING_RECS' })
     const token = localStorage.getItem("token")
-    fetch('http://localhost:3000/api/v1/games/quick_recommendations', {
+    fetch('https://the-perfect-game-backend.herokuapp.com/api/v1/games/quick_recommendations', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -24,7 +24,7 @@ export function getAdvancedRecommendations(formData) {
     dispatch({ type: 'CLEAR_GAME' })
     dispatch({ type: 'REQUESTING_RECS' })
     const token = localStorage.getItem("token")
-    fetch('http://localhost:3000/api/v1/games/advanced_recommendations', {
+    fetch('https://the-perfect-game-backend.herokuapp.com/api/v1/games/advanced_recommendations', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

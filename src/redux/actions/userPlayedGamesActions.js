@@ -5,7 +5,7 @@ export const changeUserPlayedGameLikeValue = (gameObj, liked) => ({ type: "CHANG
 export function saveUserPlayedGame(user_played_game) {
   return (dispatch) => {
     const token = localStorage.getItem('token')
-    fetch(`http://localhost:3000/api/v1/user_played_games/${user_played_game['id']}`, {
+    fetch(`https://the-perfect-game-backend.herokuapp.com/api/v1/user_played_games/${user_played_game['id']}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

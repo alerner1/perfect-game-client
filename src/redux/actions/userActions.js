@@ -1,6 +1,6 @@
 export function createUser(formData) {
   return (dispatch) => {
-    fetch('http://localhost:3000/api/v1/users', {
+    fetch('https://the-perfect-game-backend.herokuapp.com/api/v1/users', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -31,7 +31,7 @@ export function createUser(formData) {
 
 export function loginUser(formData) {
   return (dispatch) => {
-    fetch('http://localhost:3000/api/v1/login', {
+    fetch('https://the-perfect-game-backend.herokuapp.com/api/v1/login', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -63,7 +63,7 @@ export function getUser() {
   return (dispatch) => {
     const token = localStorage.getItem("token");
     dispatch({ type: 'GET_USER_REQUEST' });
-    fetch('http://localhost:3000/api/v1/profile', {
+    fetch('https://the-perfect-game-backend.herokuapp.com/api/v1/profile', {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` }
     })

@@ -14,7 +14,7 @@ export const markDisplayGameForDestruction = (gameObj) => ({ type: "MARK_DISPLAY
 
 export function getPopularGames() {
   return (dispatch) => {
-    fetch('http://localhost:3000/api/v1/games/popular', {
+    fetch('https://the-perfect-game-backend.herokuapp.com/api/v1/games/popular', {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +35,7 @@ export const updateSearchQuery = (query) => ({ type: "UPDATE_SEARCH_QUERY", payl
 export function getSearchResults(query) {
   return (dispatch) => {
     const token = localStorage.getItem("token")
-    fetch('http://localhost:3000/api/v1/games/search', {
+    fetch('https://the-perfect-game-backend.herokuapp.com/api/v1/games/search', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

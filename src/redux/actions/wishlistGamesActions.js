@@ -8,7 +8,7 @@ export function saveWishlistGames(gamesArray) {
   return (dispatch) => {
     const token = localStorage.getItem('token')
     for (let game of gamesArray) {
-      fetch('http://localhost:3000/api/v1/user_games', {
+      fetch('https://the-perfect-game-backend.herokuapp.com/api/v1/user_games', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -30,7 +30,7 @@ export function saveWishlistGames(gamesArray) {
         .then(resp => resp.json())
         .then(json => {
           if (game.destroy === true) {
-            fetch(`http://localhost:3000/api/v1/user_games/${json.id}`, {
+            fetch(`https://the-perfect-game-backend.herokuapp.com/api/v1/user_games/${json.id}`, {
               method: "DELETE",
               headers: {
                 "Content-Type": "application/json",
