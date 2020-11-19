@@ -1,6 +1,6 @@
 export function createUser(formData) {
   return (dispatch) => {
-    fetch('https://the-perfect-game-backend.herokuapp.com/api/v1/users', {
+    fetch('https://cors-anywhere.herokuapp.com/https://the-perfect-game-backend.herokuapp.com/api/v1/users', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -10,8 +10,7 @@ export function createUser(formData) {
         user: formData
       })
     })
-      .then(response => {
-        response.json()})
+      .then(response => response.json())
       .then(json => {
         localStorage.setItem("token", json.jwt);
         dispatch({ type: 'SET_USER', payload: {
@@ -32,7 +31,7 @@ export function createUser(formData) {
 
 export function loginUser(formData) {
   return (dispatch) => {
-    fetch('https://the-perfect-game-backend.herokuapp.com/api/v1/login', {
+    fetch('https://cors-anywhere.herokuapp.com/https://the-perfect-game-backend.herokuapp.com/api/v1/login', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
