@@ -31,7 +31,6 @@ class ContinueButton extends React.Component {
         })
       })
       .then(resp => {
-        debugger
         resp.json()
       })
       .then(() => this.props.getUser())
