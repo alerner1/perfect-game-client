@@ -11,7 +11,6 @@ export function createUser(formData) {
       })
     })
       .then(response => {
-        debugger
         response.json()})
       .then(json => {
         localStorage.setItem("token", json.jwt);
