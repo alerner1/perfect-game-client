@@ -43,10 +43,11 @@ class SignupForm extends React.Component {
     })
       .then(response => response.json())
       .then(json => {
-        debugger
+        console.log(json)
         localStorage.setItem("token", json.jwt);
         
       })
+      
     // this.props.createUser(this.state.userData); 
   };
 
