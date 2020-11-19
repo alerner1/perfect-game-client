@@ -14,13 +14,7 @@ export const markDisplayGameForDestruction = (gameObj) => ({ type: "MARK_DISPLAY
 
 export function getPopularGames() {
   return (dispatch) => {
-    fetch('https://cors-anywhere.herokuapp.com/https://the-perfect-game-backend.herokuapp.com/api/v1/games/popular', {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Accepts": "application/json"
-      }
-    })
+    fetch('https://the-perfect-game-backend.herokuapp.com/api/v1/games/popular')
       .then(resp => resp.json())
       .then(games => {
         for (let game of games) {
