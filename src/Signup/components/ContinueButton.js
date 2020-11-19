@@ -20,7 +20,6 @@ class ContinueButton extends React.Component {
           Authorization: `Bearer ${token}`
         },
         body: JSON.stringify({
-          // game_id: game['id'],
           liked: 1,
           game: {
             igdb_id: game['igdb_id'],
