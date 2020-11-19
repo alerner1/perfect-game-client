@@ -10,7 +10,7 @@ class ContinueButton extends React.Component {
   }
 
   saveLikedGames = () => {
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token");
     for (let game of this.props.likedGames) {
       fetch(`https://the-perfect-game-backend.herokuapp.com/api/v1/user_played_games`, {
         method: "POST",
@@ -30,7 +30,10 @@ class ContinueButton extends React.Component {
           }
         })
       })
-      .then(resp => resp.json())
+      .then(resp => {
+        debugger
+        resp.json()
+      })
       .then(() => this.props.getUser())
     }   
   }
