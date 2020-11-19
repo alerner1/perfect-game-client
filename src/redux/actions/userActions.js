@@ -10,7 +10,9 @@ export function createUser(formData) {
         user: formData
       })
     })
-      .then(response => response.json())
+      .then(response => {
+        debugger
+        response.json()})
       .then(json => {
         localStorage.setItem("token", json.jwt);
         dispatch({ type: 'SET_USER', payload: {
