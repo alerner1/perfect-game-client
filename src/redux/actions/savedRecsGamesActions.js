@@ -8,7 +8,7 @@ export function saveSavedRecsGames(gamesArray) {
   return (dispatch) => {
     const token = localStorage.getItem('token')
     for (let game of gamesArray) {
-      fetch('https://the-perfect-game-backend.herokuapp.com/api/v1/user_games', {
+      fetch('https://cors-anywhere.herokuapp.com/https://the-perfect-game-backend.herokuapp.com/api/v1/user_games', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,7 +29,7 @@ export function saveSavedRecsGames(gamesArray) {
         .then(resp => resp.json())
         .then(json => {
           if (game.destroy === true) {
-            fetch(`https://the-perfect-game-backend.herokuapp.com/api/v1/user_games/${json.id}`, {
+            fetch(`https://cors-anywhere.herokuapp.com/https://the-perfect-game-backend.herokuapp.com/api/v1/user_games/${json.id}`, {
               method: "DELETE",
               headers: {
                 "Content-Type": "application/json",

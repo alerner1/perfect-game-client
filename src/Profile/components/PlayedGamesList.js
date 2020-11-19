@@ -59,7 +59,7 @@ class PlayedGamesList extends React.Component {
         const token = localStorage.getItem('token')
         for (let game of this.props.displayGames) {
           if (game.destroy !== true) {
-            fetch('https://the-perfect-game-backend.herokuapp.com/api/v1/user_played_games', {
+            fetch('https://cors-anywhere.herokuapp.com/https://the-perfect-game-backend.herokuapp.com/api/v1/user_played_games', {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -82,7 +82,7 @@ class PlayedGamesList extends React.Component {
             .then(this.props.getUser())
           } else if (game.destroy === true && typeof(game.id) !== 'undefined') {
             const u_p_game_id = this.props.userPlayedGames.find(u_p_game => { return u_p_game.game_id === game.id}).id
-            fetch(`https://the-perfect-game-backend.herokuapp.com/api/v1/user_played_games/${u_p_game_id}`, {
+            fetch(`https://cors-anywhere.herokuapp.com/https://the-perfect-game-backend.herokuapp.com/api/v1/user_played_games/${u_p_game_id}`, {
               method: "DELETE",
               headers: {
                 "Content-Type": "application/json",

@@ -63,7 +63,7 @@ export function getUser() {
   return (dispatch) => {
     const token = localStorage.getItem("token");
     dispatch({ type: 'GET_USER_REQUEST' });
-    fetch('https://the-perfect-game-backend.herokuapp.com/api/v1/profile', {
+    fetch('https://cors-anywhere.herokuapp.com/https://the-perfect-game-backend.herokuapp.com/api/v1/profile', {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` }
     })
