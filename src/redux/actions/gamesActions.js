@@ -29,7 +29,7 @@ export const updateSearchQuery = (query) => ({ type: "UPDATE_SEARCH_QUERY", payl
 export function getSearchResults(query) {
   return (dispatch) => {
     const token = localStorage.getItem("token")
-    fetch('https://cors-anywhere.herokuapp.com/https://the-perfect-game-backend.herokuapp.com/api/v1/games/search', {
+    fetch('https://the-perfect-game-backend.herokuapp.com/api/v1/games/search', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
