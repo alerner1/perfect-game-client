@@ -16,7 +16,6 @@ export function saveSavedRecsGames(gamesArray) {
           Authorization: `Bearer ${token}`
         },
         body: JSON.stringify({
-          // game_id: game['id'],
           list: "rec",
           game: {
             igdb_id: game['igdb_id'],

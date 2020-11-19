@@ -16,7 +16,6 @@ export function saveWishlistGames(gamesArray) {
           Authorization: `Bearer ${token}`
         },
         body: JSON.stringify({
-          // game_id: game['id'],
           list: "wish",
           game: {
             igdb_id: game['igdb_id'],
