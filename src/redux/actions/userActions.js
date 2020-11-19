@@ -31,7 +31,7 @@ export function createUser(formData) {
 
 export function loginUser(formData) {
   return (dispatch) => {
-    fetch('https://cors-anywhere.herokuapp.com/https://the-perfect-game-backend.herokuapp.com/api/v1/login', {
+    fetch('https://the-perfect-game-backend.herokuapp.com/api/v1/login', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
