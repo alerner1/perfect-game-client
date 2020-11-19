@@ -31,24 +31,24 @@ class SignupForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    fetch('https://the-perfect-game-backend.herokuapp.com/api/v1/users', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accepts": "application/json"
-      },
-      body: JSON.stringify({
-        user: this.state.userData
-      })
-    })
-      .then(response => response.json())
-      .then(json => {
-        console.log(json)
-        localStorage.setItem("token", json.jwt);
+    // fetch('https://the-perfect-game-backend.herokuapp.com/api/v1/users', {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "Accepts": "application/json"
+    //   },
+    //   body: JSON.stringify({
+    //     user: this.state.userData
+    //   })
+    // })
+    //   .then(response => response.json())
+    //   .then(json => {
+    //     console.log(json)
+    //     localStorage.setItem("token", json.jwt);
         
-      })
+    //   })
       
-    // this.props.createUser(this.state.userData); 
+    this.props.createUser(this.state.userData); 
   };
 
   render() {
