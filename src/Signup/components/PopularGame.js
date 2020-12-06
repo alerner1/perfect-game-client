@@ -9,8 +9,11 @@ class PopularGame extends React.Component {
   
   handleClick = () => {
     this.props.handleClick(this.props.game)
-    // i have absolutely no idea why this component doesn't rerender when the liked state changes via the dispatch from the parent component. i give up.  
-    this.setState(prev => ({liked: !prev.liked}))
+    if (this.state.liked === 0) {
+      this.setState({liked: 1});
+    } else {
+      this.setState({liked: 0});
+    }
   }
 
   render() {
@@ -21,7 +24,7 @@ class PopularGame extends React.Component {
           backgroundSize: 'contain', 
           backgroundImage: `
             linear-gradient(rgba(0, 0, 0, ${this.state.liked ? '0.5' : '0.0'}), 
-            rgba(0, 0, 0, ${this.state.liked ? '0.5' : '0.0'})), 
+            rgba(0, 0, 0, ${this.state.liked === 1 ? '0.5' : '0.0'})), 
             url(${this.props.game['cover_url']})
           ` }}>
           <Card.Img 

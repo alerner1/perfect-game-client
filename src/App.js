@@ -18,7 +18,6 @@ const App = () => {
     const token = localStorage.getItem("token");
     if (token) {
       dispatch(getUser());
-      history.push('/game_lists/played_games');
     } else {
       history.push('/login');
     }
@@ -37,6 +36,7 @@ const App = () => {
         <Route path="/quick_recommendations" render={() => <RecommendationsContainer />} />
         <Route path="/advanced_recommendations/new" render={() => <AdvancedRecsFormContainer />} />
         <Route path="/advanced_recommendations" render={() => <RecommendationsContainer />} />
+        <Route path="/" render={() => <ProfileContainer />} />
       </Switch>
     </div>
   )

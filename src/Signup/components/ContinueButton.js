@@ -22,11 +22,7 @@ class ContinueButton extends React.Component {
         body: JSON.stringify({
           liked: 1,
           game: {
-            igdb_id: game['igdb_id'],
-            name: game['name'],
-            cover_url: game['cover_url'],
-            release_date: game['first_release_date'],
-            platforms: game['platforms']
+            igdb_id: game['igdb_id']
           }
         })
       })
@@ -57,9 +53,3 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContinueButton);
 
-
-// t.integer :igdb_id
-// t.string :name
-// t.string :cover_url
-// t.string :release_date
-// t.string :platforms
